@@ -1,9 +1,16 @@
+@import url('https://rsms.me/inter/inter.css');
+html { font-family: 'Inter', sans-serif; }
+@supports (font-variation-settings: normal) {
+  html { font-family: 'Inter var', sans-serif; }
+}
+
 .App {
   display: flex;
   min-height: 100vh;
   background-color: #06070A;
 }
 
+/* LEFT SIDE ********** */
 .Left {
   flex: 0 1 50%;
   background-color: #000000;
@@ -17,62 +24,28 @@
   display: flex;
   justify-content: space-around;
   padding:0px 120px;
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 24px;
 }
 
 .Menu a{
-  /* font-family: Inter; */
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
   color: #FFFFFF;
   text-decoration: none;
 }
 
-.Right {
-    flex: 0 1 50%;
-    background-color: #06070A;
-}
-
 .Logo {
-  min-height: 90vh;
+  min-height: 80vh;
   display: flex;
   justify-content: center;
   align-items: center;
   pointer-events: none;
 }
 
-.Left-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.Left-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* RIGHT SIDE ********** */
+.Right {
+    flex: 0 1 50%;
+    background-color: #06070A;
 }
