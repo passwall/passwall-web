@@ -27,7 +27,7 @@ html { font-family: 'Inter', sans-serif; }
 
   font-style: normal;
   font-weight: 500;
-  font-size: 24px;
+  font-size: 16px;
   line-height: 24px;
 }
 
@@ -43,6 +43,28 @@ html { font-family: 'Inter', sans-serif; }
   align-items: center;
   pointer-events: none;
 }
+
+.Download {
+  color: #61dafb;
+  display: flex;
+  justify-content: center;
+}
+
+.btn {
+  color: #FFFFFF;
+  font-size: 14px;
+  line-height: 24px;
+  padding: 8px 38px 8px 24px;
+  
+  border: 1px solid #5707FF;
+  box-sizing: border-box;
+  border-radius: 8px;
+
+  background-color: transparent;
+  background-image: url(./images/download-icon.png);
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+};
 
 /* RIGHT SIDE ********** */
 .Right {
