@@ -186,6 +186,7 @@ a:hover {
 }
 
 .SignupForm button {
+  margin-top: 32px;
   width: 100%;
   height: 48px;
   cursor: pointer;
@@ -199,7 +200,7 @@ a:hover {
   opacity: 1;
 }
 
-.SignupForm span.error {
+.SignupForm span.error, .error {
   color:#FF5151;
   font-size: 12px;
   display: relative;

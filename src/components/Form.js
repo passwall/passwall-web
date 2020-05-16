@@ -2,31 +2,13 @@ import React from "react";
 import { useForm } from "react-hook-form";
 
 function Form() {
-    const { register, handleSubmit, errors } = useForm();
-    const onSubmit = data => console.log(data);
-
-    const [name, setName] = React.useState("");
-    const [email, setEmail] = React.useState("");
-    const [master_password, setMasterPassword] = React.useState("");
-    const [master_password_verify, setMasterPasswordVerify] = React.useState("");
-
-    console.log(`
-        Name: ${name}
-        Email: ${email}
-        MasterPassword: ${master_password}
-        MasterPasswordVerify: ${master_password_verify}
-    `);
-
-    // const handleSubmit = (event) => {
-    // console.log(`
-    //     Name: ${name}
-    //     Email: ${email}
-    //     MasterPassword: ${master_password}
-    //     MasterPasswordVerify: ${master_password_verify}
-    // `);
-    
-    // event.preventDefault(); 
-    // }
+    const { register, handleSubmit, errors, getValues } = useForm({
+            validateCriteriaMode: "all"
+        });
+        const onSubmit = data => {
+            alert(JSON.stringify(data));
+            console.log(data);
+          };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -35,12 +17,10 @@ function Form() {
             <input
             name="name"
             type="text"
-            value={name}
-            onChange={e => setName(e.target.value)}
             placeholder="John Doe"
             ref={register({ required: true })}
             />
-            {errors.name && <span class="error">This field is required</span>}
+            {errors.name && <span className="error">This field is required</span>}
         </label>
 
       <label>
@@ -48,12 +28,17 @@ function Form() {
         <input
           name="email"
           type="email"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-          ref={register({ required: true })}
+          ref={register({
+            required: 'This field is required!',
+            pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                message: 'Please enter a valid email address'
+            }
+          })
+        }
           placeholder="hello@passwall.io"
           />
-          {errors.email && <span class="error">This field is required</span>}
+          {errors.email && <span className="error">{errors.email.message}</span>}
       </label>
       
       <label>
@@ -61,26 +46,35 @@ function Form() {
         <input
           name="master_password"
           type="password"
-          value={master_password}
-          onChange={e => setMasterPassword(e.target.value)}
-          ref={register({ required: true, minLength: 6 })}
+          ref={
+            register({
+                required: 'This field is required!',
+                minLength : {
+                    value: 6,
+                    message: 'Master password should be at least 6 characters'
+              }
+            })
+          }
           />
-          {errors.master_password?.type === "minLength" && <span class="error">Master Password should be at least 6 characters</span>}
-          {errors.master_password?.type === "required" && <span class="error">This field is required</span>}
+          {errors.master_password && <span className="error">{errors.master_password.message}</span>}
       </label>
 
       <label>
-        Master Password Verify
+        Master Password Confirm
         <input
-          name="master_password_verify"
+          name="master_password_confirm"
           type="password"
-          value={master_password_verify}
-          onChange={e => setMasterPasswordVerify(e.target.value)}
-          ref={register({ required: true, minLength: 6 })}
+          ref={register({
+            required: "Please confirm your master password!",
+            validate: {
+              matchesPreviousPassword: value => {
+                const { master_password } = getValues();
+                return master_password === value || "Master passwords should match!";
+              }
+            }
+          })}
           />
-          
-          {errors.master_password_verify?.type === "minLength" && <span class="error">Master Password Verify should be at least 6 characters</span>}
-          {errors.master_password_verify?.type === "required" && <span class="error">This field is required</span>}
+          {errors.master_password_confirm && <span className="error">{errors.master_password_confirm.message}</span>}
       </label>
 
       <button>Create My Account</button>
