@@ -4,6 +4,10 @@ html { font-family: 'Inter', sans-serif; }
   html { font-family: 'Inter var', sans-serif; }
 }
 
+a:hover {
+  color: #bbbbbb !important;
+}
+
 .App {
   display: flex;
   min-height: 100vh;
@@ -12,49 +16,60 @@ html { font-family: 'Inter', sans-serif; }
 
 /* LEFT SIDE ********** */
 .Left {
+  display: flex;
+  flex-direction: column;
   flex: 0 1 50%;
+  justify-content: center;
+  align-items: center;
+
   background-color: #000000;
   background-image: url(./images/bg-image.png);
-  background-size: auto;
+  background-position: bottom;
+  background-size:auto 100%;
+  background-repeat: no-repeat;
   padding: 48px;
 }
 
 .Menu {
-  color: #61dafb;
   display: flex;
-  justify-content: space-around;
-  padding:0px 120px;
+  justify-content: space-between;
 
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
+  color: #61dafb;
+  width: 462px;
 }
 
 .Menu a{
+  font-weight: 500;
+  font-size: 16px;
   color: #FFFFFF;
   text-decoration: none;
 }
 
 .Logo {
-  min-height: 80vh;
+  /* As Parent */
   display: flex;
-  justify-content: center;
   align-items: center;
-  pointer-events: none;
+
+  /* Self */
+  flex-grow: 1;
+  align-self:center;
 }
 
 .Download {
   color: #61dafb;
-  display: flex;
-  justify-content: center;
+  align-self:center;
+  
 }
 
-.btn {
+.Download a {
+  display: block;
+  padding: 8px 38px 8px 24px;
+
+  text-decoration: none;
   color: #FFFFFF;
   font-size: 14px;
+  font-weight: 600;
   line-height: 24px;
-  padding: 8px 38px 8px 24px;
   
   border: 1px solid #5707FF;
   box-sizing: border-box;
@@ -64,10 +79,126 @@ html { font-family: 'Inter', sans-serif; }
   background-image: url(./images/download-icon.png);
   background-repeat: no-repeat;
   background-position: right 15px center;
-};
+}
 
 /* RIGHT SIDE ********** */
 .Right {
-    flex: 0 1 50%;
-    background-color: #06070A;
+  display: flex;  
+  flex: 0 1 50%;
+  flex-direction: column;
+  
+  background-color: #06070A;
+}
+
+/* RIGHT BOTTOM ********** */
+.Bottom {
+  /* As Parent */
+  display: flex;
+  align-items: center;
+
+  /* Self */
+  align-self: flex-end;
+
+  width: 100%;
+  height:96px;
+  background-color: #0A0F17;
+}
+
+.Bottom h3 {
+  color: #00FFD1;
+  padding: 0px 24px ;
+  font-size: 14px;
+}
+
+.Bottom p {
+  padding: 0px 24px ;
+  font-size: 12px;
+  color: #8B93A2;
+}
+
+/* RIGHT TOP ********** */
+.Top {
+  /* Self */
+  flex-grow: 1;
+
+  /* As Parent */
+  display: flex;
+  justify-content: center;  
+  align-items: center;
+}
+
+.SignupForm {
+  /* Self */
+  
+  /* As Parent */
+  display: flex;
+  flex-direction: column;
+  
+  width: 400px;
+  height: 592px;
+}
+
+.SignupForm p {
+  font-weight: 500;
+  font-size: 16px;
+  color: #00FFD1;
+}
+
+.SignupForm h2 {
+  font-weight: bold;
+  font-size: 32px;
+  color: #FFFFFF;
+  padding: 0px !important;
+  margin: 0px !important;
+  margin-bottom: 32px !important;
+}
+
+.SignupForm label {
+  margin-bottom: 0.5em;
+  color: #FFFFFF;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+input {
+  display: flex;
+  flex-direction: column;
+  padding-left:18px;
+  padding-right:18px;
+  margin-bottom: 32px;
+  width: 100%;
+  height: 48px;
+  
+  border: 1px solid #151C27;
+  background-color: #06070A;
+  box-sizing: border-box;
+  border-radius: 8px;
+
+  font-size: 12px;
+  color:#FFFFFF;
+}
+
+input:focus {
+  border: 1px solid #5707FF;
+}
+
+button {
+  width: 100%;
+  height: 48px;
+  cursor: pointer;
+  border: none;
+  opacity: 0.5;
+  border-radius: 8px;
+  background: #5707FF;
+  color: #fefefe;
+}
+button:hover {
+  opacity: 1;
+}
+
+.error {
+  color:#db2269;
+  font-size: 0.5em;
+  display: relative;
 }
