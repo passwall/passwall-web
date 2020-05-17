@@ -26,22 +26,9 @@ function Form() {
 		})
 	};
 
-	if (visibleWelcome) {
+	if (!visibleWelcome) {
 		return (
-			<div className="Welcome">
-				<h3>Thank you.</h3>
-				<h2>Welcome aboard!</h2>		
-				<p>We’ve e-mailed details and your master password, keep it a secret!</p>
-
-				<div className="Available">
-					<p>Available platforms</p>
-					<Download />
-				</div>
-				<div className="ComingSoon">
-					<p>Coming Soon</p>
-					<ComingSoon />
-				</div>
-			</div>
+			<Welcome />
 		);
 	}
   
@@ -120,5 +107,26 @@ function Form() {
 		</div>
   );
 }
+
+function Welcome(props) {
+	return (
+		<div className="Welcome">
+			<h3>Thank you.</h3>
+			<h2>Welcome aboard!</h2>		
+			<p>We’ve e-mailed details and your master password, keep it a secret!</p>
+
+			<div className="Available">
+				<p>Available platforms</p>
+				<Download />
+			</div>
+			<div className="ComingSoon">
+				<p>Coming Soon</p>
+				<ComingSoon />
+			</div>
+		</div>
+	);
+}
+
+
 
 export default Form;
