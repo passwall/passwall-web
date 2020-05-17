@@ -6,7 +6,7 @@ function Download() {
     );
  
     return apps.map((item, index) => {
-        return <a key={index} href={item.url}>{item.name}</a>
+        return <a key={index} href={item.url} className="platform">{item.name}</a>
     });
 }
  

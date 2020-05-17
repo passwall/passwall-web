@@ -25,11 +25,7 @@ function App() {
       </div>
       <div className="Right">
         <div className="Top">
-          <div className="SignupForm">
-            <p>PRO will be here soon, until then</p>
-            <h2>Create a free account</h2>
             <Form />
-          </div>
         </div>
         <div className="Bottom">
           <KeepInMind />
