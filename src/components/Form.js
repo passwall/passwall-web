@@ -1,14 +1,27 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import API from './Api';
+
 
 function Form() {
     const { register, handleSubmit, errors, getValues } = useForm({
-            validateCriteriaMode: "all"
-        });
-        const onSubmit = data => {
-            alert(JSON.stringify(data));
-            console.log(data);
-          };
+		validateCriteriaMode: "all"
+	});
+	const onSubmit = data => {
+		/* alert(JSON.stringify(data));
+		console.log(data); */
+
+		// e.preventDefault()
+		API.post('/', JSON.stringify(data))
+		
+		.then(function (response) {
+			console.log(response)
+		})
+		
+		.catch(function (error) {
+			console.log(error)
+		}) 
+	};
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
