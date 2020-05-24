@@ -1,8 +1,10 @@
 import React, {useState}  from "react";
 import { useForm } from "react-hook-form";
+import CryptoJS from 'crypto-js'
 import API from './API';
 import Download from "./Download";
 import ComingSoon from "./ComingSoon";
+
 
 function Form() {
     const { register, handleSubmit, errors, getValues } = useForm({
@@ -12,8 +14,8 @@ function Form() {
 	const [visibleWelcome, setVisibleWelcome] = useState(false);
 
 	const onSubmit = data => {
-
-		API.post('/', JSON.stringify(data))
+		data.master_password = CryptoJS.SHA256(data.master_password).toString()
+		API.post('/web/users', JSON.stringify(data))
 		
 		.then(function (response) {
 			console.log(response)
@@ -26,7 +28,7 @@ function Form() {
 		})
 	};
 
-	if (!visibleWelcome) {
+	if (visibleWelcome) {
 		return (
 			<Welcome />
 		);
