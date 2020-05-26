@@ -1,7 +1,7 @@
 import React, {useState}  from "react";
 import { useForm } from "react-hook-form";
-import CryptoJS from 'crypto-js'
-import API from './API';
+import CryptoJS from "crypto-js";
+import Api from "./Api";
 import Download from "./Download";
 import ComingSoon from "./ComingSoon";
 
@@ -15,7 +15,7 @@ function Form() {
 
 	const onSubmit = data => {
 		data.master_password = CryptoJS.SHA256(data.master_password).toString()
-		API.post('/web/users', JSON.stringify(data))
+		Api.post('/web/users', JSON.stringify(data))
 		
 		.then(function (response) {
 			console.log(response)
