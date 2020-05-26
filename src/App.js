@@ -14,7 +14,7 @@ function App() {
     <div className="App">
       <div className="Left">
       <div className="Menu">
-          Merhaba
+          Merhaba s
           <Menu />
         </div>
         <div className="Logo">
