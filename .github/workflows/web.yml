@@ -19,12 +19,12 @@ jobs:
         host: ${{ secrets.REMOTE_HOST }}
         username: ${{ secrets.REMOTE_USER }}
         key: ${{ secrets.SERVER_SSH_KEY }}
-        passphrase: ${{ secrets.SERVER_SSH_KEY_PASSPHRASE }}
+        # passphrase: ${{ secrets.SERVER_SSH_KEY_PASSPHRASE }}
         script: |
           cd /opt/passwall-web
           git pull
-          yarn install
-          yarn build
+          /usr/bin/yarn install
+          /usr/bin/yarn build
 
     # - name: Set up Go 1.x
     #   uses: actions/setup-go@v2
