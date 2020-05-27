@@ -14,7 +14,6 @@ function App() {
     <div className="App">
       <div className="Left">
       <div className="Menu">
-          Merhaba s
           <Menu />
         </div>
         <div className="Logo">
