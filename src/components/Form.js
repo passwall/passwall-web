@@ -7,6 +7,10 @@ import ComingSoon from "./ComingSoon";
 import ReCAPTCHA from "react-google-recaptcha";
 
 const recaptchaRef = React.createRef();
+
+function onChange(value) {
+	console.log("Captcha value:", value);
+  }
   
 function Form() {
     const { register, handleSubmit, errors, getValues } = useForm({
@@ -41,11 +45,14 @@ function Form() {
 	return (
 		<div className="SignupForm">
 			<form onSubmit={handleSubmit(onSubmit)}>
+
 				<ReCAPTCHA
-				ref={recaptchaRef}
-				// size="invisible"4
-				sitekey="6LfsMf0UAAAAAHHHknLtw7lgeczhXHL5WO4QlyS2"
-				/>
+					onChange={onChange}
+					ref={recaptchaRef}
+					size="invisible"
+					sitekey="6LcbOP0UAAAAAK1Zc6jNtrIF34pMBNPGaDaz3VpY"
+					/>
+					
 
 				<h3>PRO will be here soon, until then</h3>
 				<h2>Create a free account</h2>
