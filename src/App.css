@@ -269,3 +269,7 @@ a.platform:hover {
   font-size: 12px;
   display: relative;
 }
+
+.grecaptcha-badge {
+  display: none;
+}

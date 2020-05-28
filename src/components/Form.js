@@ -4,8 +4,10 @@ import CryptoJS from "crypto-js";
 import Api from "./Api";
 import Download from "./Download";
 import ComingSoon from "./ComingSoon";
+import ReCAPTCHA from "react-google-recaptcha";
 
-
+const recaptchaRef = React.createRef();
+  
 function Form() {
     const { register, handleSubmit, errors, getValues } = useForm({
 		validateCriteriaMode: "all"
@@ -14,6 +16,8 @@ function Form() {
 	const [visibleWelcome, setVisibleWelcome] = useState(false);
 
 	const onSubmit = data => {
+		recaptchaRef.current.execute();
+
 		data.master_password = CryptoJS.SHA256(data.master_password).toString()
 		Api.post('/web/users', JSON.stringify(data))
 		
@@ -37,6 +41,12 @@ function Form() {
 	return (
 		<div className="SignupForm">
 			<form onSubmit={handleSubmit(onSubmit)}>
+				<ReCAPTCHA
+				ref={recaptchaRef}
+				// size="invisible"4
+				sitekey="6LfsMf0UAAAAAHHHknLtw7lgeczhXHL5WO4QlyS2"
+				/>
+
 				<h3>PRO will be here soon, until then</h3>
 				<h2>Create a free account</h2>
 				<label>
