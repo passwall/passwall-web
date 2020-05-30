@@ -2,9 +2,9 @@ import React from 'react';
  
 function Menu() {
     const links = Array (
-        {name: "Give Feedback", url: "https://www.yakuter.com"},
-        {name: "Contact", url: "https://www.yakuter.com"},
-        {name: "Community", url: "https://www.yakuter.com"},
+        {name: "Give Feedback", url: "https://passwall.typeform.com/to/GAv1h2"},
+        {name: "Contact", url: "mailto:hello@passwall.io"},
+        {name: "Community", url: "https://passwall.slack.com/"},
         {name: "Twitter", url: "https://twitter.com/pass_wall"},
     );
  

@@ -20,7 +20,7 @@ function Form() {
 	const [visibleWelcome, setVisibleWelcome] = useState(false);
 
 	const onSubmit = data => {
-		recaptchaRef.current.execute();
+		// recaptchaRef.current.execute();
 
 		data.master_password = CryptoJS.SHA256(data.master_password).toString()
 		Api.post('/web/users', JSON.stringify(data))
@@ -44,6 +44,7 @@ function Form() {
   
 	return (
 		<div className="SignupForm">
+			
 			<form onSubmit={handleSubmit(onSubmit)}>
 
 				<ReCAPTCHA
@@ -52,8 +53,6 @@ function Form() {
 					size="invisible"
 					sitekey="6LcbOP0UAAAAAK1Zc6jNtrIF34pMBNPGaDaz3VpY"
 					/>
-					
-
 				<h3>PRO will be here soon, until then</h3>
 				<h2>Create a free account</h2>
 				<label>
@@ -64,7 +63,7 @@ function Form() {
 					placeholder="John Doe"
 					ref={register({ required: true })}
 					/>
-					{errors.name && <span className="error">This field is required</span>}
+					{errors.name && <span className="error">This field is required!</span>}
 				</label>
 
 			<label>
@@ -76,7 +75,7 @@ function Form() {
 					required: 'This field is required!',
 					pattern: {
 						value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-						message: 'Please enter a valid email address'
+						message: 'Please enter a valid email address!'
 					}
 				})
 				}
@@ -95,7 +94,7 @@ function Form() {
 						required: 'This field is required!',
 						minLength : {
 							value: 6,
-							message: 'Master password should be at least 6 characters'
+							message: 'Master password should be at least 6 characters!'
 					}
 					})
 				}
@@ -132,7 +131,7 @@ function Welcome(props) {
 		<div className="Welcome">
 			<h3>Thank you.</h3>
 			<h2>Welcome aboard!</h2>		
-			<p>We’ve e-mailed details and your master password, keep it a secret!</p>
+			<p>Now you can sign in with your desktop app. Please keep your master password secret!</p>
 
 			<div className="Available">
 				<p>Available platforms</p>

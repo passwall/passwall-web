@@ -11,26 +11,27 @@ function App() {
 
   return (
     
-    <div className="App">
-      <div className="Left">
-      <div className="Menu">
-          <Menu />
-        </div>
-        <div className="Logo">
-          <Logo />
-        </div>
-        <div className="Download">
-          <Download />
-        </div>
-      </div>
-      <div className="Right">
-        <div className="Top">
-            <Form />
-        </div>
-        <div className="Bottom">
-          <KeepInMind />
-        </div>
-      </div>
+	<div className="App">
+		<div className="Left">
+			<div className="Menu">
+				<Menu />
+			</div>
+			<div className="Logo">
+				<Logo />
+			</div>
+			<div className="Download">
+				<Download />
+			</div>
+      	</div>
+      	
+		<div className="Right">
+        	<div className="Top">
+            	<Form />
+        	</div>
+        	<div className="Bottom">
+          		<KeepInMind />
+        	</div>
+      	</div>
     </div>
   );
 }
