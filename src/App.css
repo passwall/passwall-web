@@ -150,7 +150,7 @@ a.platform:hover {
   font-size: 32px;
   color: #FFFFFF;
   padding: 0px !important;
-  margin: 0px !important;
+  margin-bottom: 20px !important;
 }
 
 .Top p {
@@ -320,7 +320,6 @@ a.platform:hover {
   
   .Top h2 {
     font-size: 24px;
-    margin-bottom: 20px !important;
   }
 
   a.platform {

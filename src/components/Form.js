@@ -5,6 +5,7 @@ import Api from "./Api";
 import Download from "./Download";
 import ComingSoon from "./ComingSoon";
 import ReCAPTCHA from "react-google-recaptcha";
+import DOMPurify from 'dompurify';
 
 const recaptchaRef = React.createRef();
 
@@ -20,6 +21,10 @@ function Form() {
 	const [visibleWelcome, setVisibleWelcome] = useState(false);
 
 	const onSubmit = data => {
+		data.name = DOMPurify.sanitize(data.name);
+		data.email = DOMPurify.sanitize(data.email);
+		data.master_password = DOMPurify.sanitize(data.master_password);
+		
 		// recaptchaRef.current.execute();
 
 		data.master_password = CryptoJS.SHA256(data.master_password).toString()
