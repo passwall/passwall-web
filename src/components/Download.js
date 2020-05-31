@@ -2,7 +2,7 @@ import React from 'react';
  
 function Download() {
     const apps = Array (
-        {name: "MacOS", url: "https://www.yakuter.com"},
+        {name: "MacOS", url: "https://passwall.io/download/passwall-macos/"},
     );
  
     return apps.map((item, index) => {
