@@ -4,7 +4,7 @@ function KeepInMind() {
     return (
         <div>
             <h3>Keep in mind</h3>
-            <p>We do not store your master password anywhere. If you forget your master password there is no way to restore it.</p>
+            <p>There is no way to reset or recover your master password in the event that you forget it. Please do not lose your master password.</p>
         </div>
     );
 }

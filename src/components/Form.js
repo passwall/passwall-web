@@ -24,7 +24,8 @@ function Form() {
 		data.name = DOMPurify.sanitize(data.name);
 		data.email = DOMPurify.sanitize(data.email);
 		data.master_password = DOMPurify.sanitize(data.master_password);
-		
+		delete data.master_password_confirm;
+
 		// recaptchaRef.current.execute();
 
 		data.master_password = CryptoJS.SHA256(data.master_password).toString()
