@@ -29,7 +29,7 @@ function Form() {
 		// recaptchaRef.current.execute();
 
 		data.master_password = CryptoJS.SHA256(data.master_password).toString()
-		Api.post('/web/users', JSON.stringify(data))
+		Api.post('/auth/signup', JSON.stringify(data))
 		
 		.then(function (response) {
 			console.log(response)
