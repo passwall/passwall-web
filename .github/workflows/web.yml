@@ -8,22 +8,22 @@ on:
 
 jobs:
 
-  build:
-    name: Build
-    runs-on: ubuntu-latest
-    steps:
+  # build:
+  #   name: Build
+  #   runs-on: ubuntu-latest
+  #   steps:
     
-    - name: Deploy ssh
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.REMOTE_HOST }}
-        username: ${{ secrets.REMOTE_USER }}
-        key: ${{ secrets.SERVER_SSH_KEY }}
-        script: |
-          cd /opt/passwall-web
-          git pull
-          /usr/bin/yarn install
-          /usr/bin/yarn build
+  #   - name: Deploy ssh
+  #     uses: appleboy/ssh-action@master
+  #     with:
+  #       host: ${{ secrets.REMOTE_HOST }}
+  #       username: ${{ secrets.REMOTE_USER }}
+  #       key: ${{ secrets.SERVER_SSH_KEY }}
+  #       script: |
+  #         cd /opt/passwall-web
+  #         git pull
+  #         /usr/bin/yarn install
+  #         /usr/bin/yarn build
 
     # - name: Set up Go 1.x
     #   uses: actions/setup-go@v2

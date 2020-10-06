@@ -96,73 +96,54 @@ a.platform:hover {
   display: flex;  
   flex: 0 1 50%;
   flex-direction: column;
-  
   background-color: #06070A;
 }
 
 /* RIGHT BOTTOM ********** */
-.Bottom {
+.KeepInMind {
   /* As Parent */
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: left;
 
   /* Self */
   align-self: flex-end;
-
   width: 100%;
   height:96px;
   background-color: #0A0F17;
   padding:24px;
 }
 
-.Bottom h3 {
+.KeepInMind h3 {
   color: #00FFD1;
   font-size: 14px;
   line-height: 22px;
   margin-bottom:8px;
 }
 
-.Bottom p {
+.KeepInMind p {
   font-size: 12px;
   color: #8B93A2;
 }
 
 /* RIGHT TOP ********** */
-.Top {
+.Form {
   /* Self */
   flex-grow: 1;
+  margin-top: 96px;
 
   /* As Parent */
   display: flex;
+  flex-direction: column;
   justify-content: center;  
   align-items: center;
 }
 
-.Top h3 {
-  font-weight: 500;
-  font-size: 16px;
-  color: #00FFD1;
-  margin-bottom:8px;
-}
-
-.Top h2 {
-  font-weight: bold;
-  font-size: 32px;
-  color: #FFFFFF;
-  padding: 0px !important;
-  margin-bottom: 20px !important;
-}
-
-.Top p {
-  font-size: 16px;
-  color: #FFFFFF;
-  padding: 0px !important;
-  margin-bottom: 10px;
-  /* margin: 0px !important; */
-}
-
 .Welcome {
   /* Self */
+  flex-grow: 1;
+  margin-top: 96px;
+  align-self: center;
   
   /* As Parent */
   display: flex;
@@ -170,6 +151,29 @@ a.platform:hover {
   
   width: 400px;
   height: 592px;
+}
+
+.Welcome h3 {
+  font-weight: 500;
+  font-size: 16px;
+  color: #00FFD1;
+  margin-bottom:8px;
+}
+
+.Welcome h2 {
+  font-weight: bold;
+  font-size: 32px;
+  color: #FFFFFF;
+  padding: 0px !important;
+  margin-bottom: 20px !important;
+}
+
+.Welcome p {
+  font-size: 16px;
+  color: #FFFFFF;
+  padding: 0px !important;
+  margin-bottom: 10px;
+  /* margin: 0px !important; */
 }
 
 .Available {
@@ -220,6 +224,29 @@ a.platform:hover {
   
   width: 400px;
   min-height: 592px;
+}
+
+.SignupForm h3 {
+  font-weight: 500;
+  font-size: 16px;
+  color: #00FFD1;
+  margin-bottom:8px;
+}
+
+.SignupForm h2 {
+  font-weight: bold;
+  font-size: 32px;
+  color: #FFFFFF;
+  padding: 0px !important;
+  margin-bottom: 20px !important;
+}
+
+.SignupForm p {
+  font-size: 16px;
+  color: #FFFFFF;
+  padding: 0px !important;
+  margin-bottom: 10px;
+  /* margin: 0px !important; */
 }
 
 .SignupForm label {
@@ -279,6 +306,117 @@ a.platform:hover {
 .grecaptcha-badge {
   display: none !important;
 }
+
+.Price {
+  /* Self */
+  flex-grow: 1;
+  margin-top: 96px;
+  width: 592px;
+  /* min-height: 592px; */
+
+  /* As Parent */
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center;   */
+  align-items: top;
+  align-self:center;
+}
+
+.Price h1{
+  font-size: 48px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom:48px;
+  /* min-width: 592px; */
+  /* width: 400px;
+  min-height: 592px; */
+}
+
+.Price .Tables{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.Price .Free{
+  /* Self */
+  width: 280px;
+  height: 511px;
+  background-color: #0A0F17;
+  border: 2px solid #10161F;
+  box-sizing: border-box;
+  border-radius: 16px;
+
+  /* As Parent */
+  display: flex;
+  flex-direction: column;
+  align-items: top;
+  align-self:center;
+  
+}
+
+.Price .Free h2{
+  font-size: 32px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin:26px 0px 32px 32px;
+}
+
+.Price .Tda{
+  font-size: 16px;
+  font-weight: 500;
+  color: #FFFFFF;
+  background-color: #06070A;
+  padding:16px;
+}
+
+.Price .Tdb{
+  font-size: 16px;
+  font-weight: 500;
+  color: #FFFFFF;
+  padding:16px;
+}
+
+.Price .Pro{
+  /* Self */
+  width: 280px;
+  height: 511px;
+  background-color: #0A0F17;
+  border: 2px solid #5707FF;
+  box-sizing: border-box;
+  border-radius: 16px;
+
+  /* As Parent */
+  display: flex;
+  flex-direction: column;
+  align-items: top;
+  align-self:center;
+}
+
+.Price .Pro h2{
+  font-size: 32px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin:26px 0px 32px 32px;
+}
+
+.Price button {
+  width: 216px;
+  height: 52px;
+  border:none;
+  font-size: 16px;
+  font-weight: 700;
+  color: #FFFFFF;
+  background: #5707FF;
+  border-radius: 12px;
+  align-self:center;
+  margin-bottom: 24px;
+}
+
+.Grow {
+  flex-grow: 1;
+}
+
 
 @media only screen and (max-width: 600px) {
   .App {

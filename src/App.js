@@ -4,6 +4,7 @@ import Logo from './components/Logo';
 import Download from './components/Download';
 import Form from './components/Form';
 import KeepInMind from './components/KeepInMind';
+import Paddle from './components/Paddle';
 import './App.css';
 
 
@@ -25,12 +26,7 @@ function App() {
       	</div>
       	
 		<div className="Right">
-        	<div className="Top">
-            	<Form />
-        	</div>
-        	<div className="Bottom">
-          		<KeepInMind />
-        	</div>
+			<Form />
       	</div>
     </div>
   );
