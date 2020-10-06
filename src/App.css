@@ -406,7 +406,7 @@ a.platform:hover {
 .Price .Pro .Header-Wrapper h2 {
   font-size: 32px;
   font-weight: 700;
-  margin:26px auto 32px 32px;
+  margin:26px 0px 32px 32px;
   /* Fallback Color */
   color: #00FFD1;
   /* Gradient */
@@ -415,6 +415,7 @@ a.platform:hover {
   -moz-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  display: inline-block;
 }
 
 .Price .Footer-Wrapper {
