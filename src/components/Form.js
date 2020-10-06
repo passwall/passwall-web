@@ -171,22 +171,26 @@ function Price(props) {
                 Your Passwords Safe</h1>
                 <div className="Tables">
                     <div className="Free">
-                        <h2>FREE</h2>
+                        <div className="Header-Wrapper"><h2>Free</h2></div>
                         <div className="Tda">Logins</div>
                         <div className="Tdb">Easy Import</div>
                         <div className="Tda">Some Other</div>
                         <div className="Tdb Grow">Some Other</div>
-						<button onClick={props.onSubmit}>SIGN UP</button>
+                        <div className="Footer-Wrapper">
+                          <button onClick={props.onSubmit}>SIGN UP</button>
+                        </div>
                     </div>
                     <div className="Pro">
-                        <h2>PRO</h2>
+                        <div className="Header-Wrapper"><h2>PRO</h2></div>
                         <div className="Tda">Everything in free</div>
                         <div className="Tdb">Emails</div>
                         <div className="Tda">Bank Accounts</div>
                         <div className="Tdb">Credit Cards</div>
                         <div className="Tda">Private Notes</div>
                         <div className="Tdb Grow">Servers</div>
-                        <button onClick={props.onSubmit}>SIGN UP</button>
+                        <div className="Footer-Wrapper">
+                          <button onClick={props.onSubmit}>SIGN UP</button>
+                        </div>
                     </div>
                 </div>
         </div>
