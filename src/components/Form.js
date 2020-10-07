@@ -203,7 +203,9 @@ function Form() {
             </label>
             {/* Paddle Button */}
             {/* <button onClick={openCheckout}>Subscribe Now!</button> */}
-            <button>Create My Account</button>
+            <button>
+              {paid ? "Continue to Payment" : "Create My Account"}
+            </button>
           </form>
         </div>
         <div className="KeepInMind">
