@@ -367,7 +367,8 @@ a.platform:hover {
   font-weight: 500;
   color: #FFFFFF;
   background-color: #06070A;
-  padding:16px;
+  padding:13px;
+  display: inline-flex;
 }
 
 .Price .Tdb{
@@ -375,7 +376,8 @@ a.platform:hover {
   font-weight: 500;
   color: #FFFFFF;
   background-color: #0A0F17;
-  padding:16px;
+  padding:13px;
+  display: inline-flex;
 }
 
 .Price .Pro{
@@ -455,6 +457,11 @@ a.platform:hover {
 
 .Grow {
   flex-grow: 1;
+}
+
+.svgForm {
+  height: 1em;
+  fill: #53ffd1;
 }
 
 
