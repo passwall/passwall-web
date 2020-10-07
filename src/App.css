@@ -355,7 +355,7 @@ a.platform:hover {
   
 }
 
-.Price .Free h2{
+.Price .Free .Header-Wrapper h2{
   font-size: 32px;
   font-weight: 700;
   color: #FFFFFF;
@@ -374,6 +374,7 @@ a.platform:hover {
   font-size: 16px;
   font-weight: 500;
   color: #FFFFFF;
+  background-color: #0A0F17;
   padding:16px;
 }
 
@@ -381,10 +382,14 @@ a.platform:hover {
   /* Self */
   width: 280px;
   height: 511px;
-  background-color: #0A0F17;
-  border: 2px solid #5707FF;
   box-sizing: border-box;
   border-radius: 16px;
+  /* Gradient Border */
+  background: linear-gradient(29.54deg, #00FFD1, #5707FF);
+  border: 2px solid transparent;
+  background-repeat: no-repeat;
+  background-origin: border-box;
+  position: relative;
 
   /* As Parent */
   display: flex;
@@ -393,14 +398,33 @@ a.platform:hover {
   align-self:center;
 }
 
-.Price .Pro h2{
-  font-size: 32px;
-  font-weight: 700;
-  color: #FFFFFF;
-  margin:26px 0px 32px 32px;
+.Price .Pro .Header-Wrapper {
+  background-color: #0A0F17;
+  border-radius: 16px 16px 0 0;
 }
 
-.Price button {
+.Price .Pro .Header-Wrapper h2 {
+  font-size: 32px;
+  font-weight: 700;
+  margin:26px 0px 32px 32px;
+  /* Fallback Color */
+  color: #00FFD1;
+  /* Gradient */
+  background: linear-gradient(258.74deg, #FFF 0.38%, #FFF0 161.64%), #00FFD1;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.Price .Footer-Wrapper {
+  background-color: #0A0F17;
+  border-radius: 0 0 16px 16px;
+  text-align: center;
+}
+
+.Price .Footer-Wrapper button {
   width: 216px;
   height: 52px;
   border:none;
@@ -409,7 +433,6 @@ a.platform:hover {
   color: #FFFFFF;
   background: #5707FF;
   border-radius: 12px;
-  align-self:center;
   margin-bottom: 24px;
 }
 
