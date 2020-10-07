@@ -85,6 +85,7 @@ function Form() {
           setStep(step + 1);
         }}
         onFreeSubmit={() => {
+          setPaid(false);
           setStep(step + 1);
         }}
       />
@@ -98,7 +99,7 @@ function Form() {
           <h3>Create a PRO account</h3>
         </div>
       ) : (
-        <div className="formTitle">
+        <div>
           <h3>PRO will be here soon, until then</h3>
           <h2>Create a free account</h2>
         </div>
