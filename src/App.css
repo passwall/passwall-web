@@ -16,37 +16,93 @@ a:hover {
 
 .App {
   display: flex;
+  flex-wrap: wrap;
   min-height: 100vh;
   background-color: #06070A;
+}
+
+.Hamburger {
+  width: 52px;
+  height: 52px;
+  display: none;
+  position: relative;
+  box-sizing: border-box;
+  transition: .25s ease-in-out;
+}
+
+.Hamburger-Line {
+  width: 23px;
+  height: 3px;
+  pointer-events: none;
+  border-radius: 5px;
+  position: absolute;
+  background-color: #ffffff;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: .25s ease-in-out;
+}
+
+.Hamburger.Hamburger-open {
+  transform: rotate(180deg);
+}
+
+.Hamburger.Hamburger-open .Hamburger-Line:nth-of-type(1) {
+  transform: translateX(-50%) rotate(-45deg);
+  top: 27px;
+}
+.Hamburger.Hamburger-open .Hamburger-Line:nth-of-type(2) {
+  opacity: 0;
+}
+.Hamburger.Hamburger-open .Hamburger-Line:nth-of-type(3) {
+  transform: translateX(-50%) rotate(45deg);
+  top: 27px;
+}
+
+.Hamburger-Line:nth-of-type(1) {
+  top: 16px;
+}
+
+.Hamburger-Line:nth-of-type(2) {
+  top: 24px;
+}
+
+.Hamburger-Line:nth-of-type(3) {
+  top: 32px;
 }
 
 /* LEFT SIDE ********** */
 .Left {
   display: flex;
   flex-direction: column;
-  flex: 0 1 50%;
+  flex: 0 0 50%;
   justify-content: center;
   align-items: center;
 
   background-color: #000000;
-  background-image: url(./images/bg-image.png);
+  background-image: url('./images/bg-image.png');
   background-position: bottom;
   background-size:auto 100%;
   background-repeat: no-repeat;
-  padding: 48px;
+  padding: 30px;
 }
 
 .Menu {
-  display: flex;
-  justify-content: space-between;
-
+  margin: -20px 0 0 -20px;
   color: #61dafb;
-  width: 462px;
+  width: 80%;
 }
 
-.Menu a{
+@media all and (min-width: 960px){
+  .Menu {
+    display: flex;
+  }
+}
+
+.Menu a {
   font-weight: 500;
   font-size: 16px;
+  display: inline-block;
+  padding: 20px;
   color: #FFFFFF;
   text-decoration: none;
 }
@@ -64,7 +120,7 @@ a:hover {
 .Download {
   color: #61dafb;
   align-self:center;
-  
+
 }
 
 a.platform {
@@ -76,7 +132,7 @@ a.platform {
   font-size: 14px;
   font-weight: 600;
   line-height: 24px;
-  
+
   border: 1px solid #5707FF;
   box-sizing: border-box;
   border-radius: 8px;
@@ -93,8 +149,9 @@ a.platform:hover {
 
 /* RIGHT SIDE ********** */
 .Right {
-  display: flex;  
-  flex: 0 1 50%;
+  padding: 30px;
+  display: flex;
+  flex: 0 0 50%;
   flex-direction: column;
   background-color: #06070A;
 }
@@ -135,7 +192,7 @@ a.platform:hover {
   /* As Parent */
   display: flex;
   flex-direction: column;
-  justify-content: center;  
+  justify-content: center;
   align-items: center;
 }
 
@@ -144,11 +201,11 @@ a.platform:hover {
   flex-grow: 1;
   margin-top: 96px;
   align-self: center;
-  
+
   /* As Parent */
   display: flex;
   flex-direction: column;
-  
+
   width: 400px;
   height: 592px;
 }
@@ -207,7 +264,7 @@ a.platform:hover {
   font-size: 14px;
   font-weight: 600;
   line-height: 24px;
-  
+
   border: 1px solid #151C27;
   box-sizing: border-box;
   border-radius: 8px;
@@ -217,11 +274,11 @@ a.platform:hover {
 
 .SignupForm {
   /* Self */
-  
+
   /* As Parent */
   display: flex;
   flex-direction: column;
-  
+
   width: 400px;
   min-height: 592px;
 }
@@ -268,7 +325,7 @@ a.platform:hover {
   padding-right:18px;
   width: 100%;
   height: 48px;
-  
+
   border: 1px solid #151C27;
   background-color: #06070A;
   box-sizing: border-box;
@@ -308,42 +365,39 @@ a.platform:hover {
 }
 
 .Price {
-  /* Self */
   flex-grow: 1;
   margin-top: 96px;
-  width: 592px;
-  /* min-height: 592px; */
-
-  /* As Parent */
+  flex: 0 0 100%;
   display: flex;
   flex-direction: column;
-  /* justify-content: center;   */
-  align-items: top;
-  align-self:center;
 }
 
 .Price h1{
   font-size: 48px;
   font-weight: 700;
   color: #FFFFFF;
-  margin-bottom:48px;
-  /* min-width: 592px; */
-  /* width: 400px;
-  min-height: 592px; */
+  margin-bottom: 48px;
 }
 
-.Price .Tables{
+.Price .Tables {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-between;
+  flex: 0 0 40%;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-.Price .Free{
+@media all and (min-width: 960px){
+  .Price .Tables {
+    flex-direction: row;
+  }
+}
+
+.Price .Table {
   /* Self */
-  width: 280px;
+  flex: 0 0 calc(50% - 15px);
   height: 511px;
-  background-color: #0A0F17;
-  border: 2px solid #10161F;
   box-sizing: border-box;
   border-radius: 16px;
 
@@ -352,10 +406,17 @@ a.platform:hover {
   flex-direction: column;
   align-items: top;
   align-self:center;
-  
 }
 
-.Price .Free .Header-Wrapper h2{
+.Price .Table.Pro {
+  background: linear-gradient(29.54deg, #00FFD1, #5707FF);
+  border: 2px solid transparent;
+  background-repeat: no-repeat;
+  background-origin: border-box;
+  position: relative;
+}
+
+.Price .Free .Header-Wrapper h2 {
   font-size: 32px;
   font-weight: 700;
   color: #FFFFFF;
@@ -376,26 +437,6 @@ a.platform:hover {
   color: #FFFFFF;
   background-color: #0A0F17;
   padding:16px;
-}
-
-.Price .Pro{
-  /* Self */
-  width: 280px;
-  height: 511px;
-  box-sizing: border-box;
-  border-radius: 16px;
-  /* Gradient Border */
-  background: linear-gradient(29.54deg, #00FFD1, #5707FF);
-  border: 2px solid transparent;
-  background-repeat: no-repeat;
-  background-origin: border-box;
-  position: relative;
-
-  /* As Parent */
-  display: flex;
-  flex-direction: column;
-  align-items: top;
-  align-self:center;
 }
 
 .Price .Pro .Header-Wrapper {
@@ -458,34 +499,81 @@ a.platform:hover {
 }
 
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 960px) {
   .App {
    flex-direction: column;
   }
   .Left {
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-  
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
     background: none;
-    padding: 0px;
+    padding: 24px;
   }
-  .Menu, .Download {
+
+  .Hamburger {
+    display: block;
+  }
+
+  .Price .Tables {
+    /* Self */
+    flex: 0 0 100%;
+  }
+
+  .Price .Tables .Table {
+    /* Self */
+    height: auto;
+    width: 100%;
+    flex: 0 0 100%;
+    margin-bottom: 50px;
+  }
+
+  .Price .Tables .Table:last-of-type {
+    margin-bottom: 0;
+  }
+
+  .Download {
     display: none;
   }
+
+  .Menu {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(-100%);
+    width: 100%;
+    background-color: #5707FF;
+    padding: 70px 30px 30px 30px;
+    margin: 0;
+    text-align: center;
+    transition: .25s ease-in-out;
+  }
+
+  .Menu-Open {
+    transform: translateY(0);
+  }
+
+  .Menu a {
+    display: block;
+  }
+
   .SignupForm, .Welcome {
     padding: 24px;
+  }
+
+  .Price {
+    margin-top: 20px;
+  }
+
+  .Price h1 {
+    font-size: 36px;
   }
 
   .SignupForm button {
     opacity: 1;
     margin-top: 22px;
-  }
-
-  .Logo {
-    
-    align-self:flex-start;
-    padding:24px;
   }
 
   .Logo img{
@@ -495,7 +583,7 @@ a.platform:hover {
   .Top h3 {
     font-size: 14px;
   }
-  
+
   .Top h2 {
     font-size: 24px;
   }

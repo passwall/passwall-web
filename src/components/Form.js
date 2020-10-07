@@ -12,7 +12,7 @@ const recaptchaRef = React.createRef();
 function onChange(value) {
 	console.log("Captcha value:", value);
   }
-  
+
 function Form() {
     const { register, handleSubmit, errors, getValues } = useForm({
 		validateCriteriaMode: "all"
@@ -22,8 +22,8 @@ function Form() {
 
 	// const Paddle = window.Paddle;
     // const email = document.getElementById('email').value;
-    // const openCheckout  = () => { 
-    //     Paddle.Checkout.open({ 
+    // const openCheckout  = () => {
+    //     Paddle.Checkout.open({
     //         product: 630862,
     //         email: email
     //     });
@@ -39,12 +39,12 @@ function Form() {
 
 		data.master_password = CryptoJS.SHA256(data.master_password).toString()
 		Api.post('/auth/signup?api_key=DdOvwxOnKEBQhJomoIft6lRNu1o/gaVq9jyudBFKME0=', JSON.stringify(data))
-		
+
 		.then(function (response) {
 			console.log(response)
 			setStep(3)
 		})
-		
+
 		.catch(function (error) {
 			setStep(2)
 			console.log(error)
@@ -100,7 +100,7 @@ function Form() {
 					/>
 					{errors.email && <span className="error">{errors.email.message}</span>}
 				</label>
-				
+
 				<label>
 					Master Password
 					<input
@@ -160,7 +160,7 @@ function Welcome(props) {
 	return (
 		<div className="Welcome">
 			<h3>Thank you.</h3>
-			<h2>Welcome aboard!</h2>		
+			<h2>Welcome aboard!</h2>
 			<p>Now you can sign in with your desktop app. Please keep your master password secret!</p>
 
 			<div className="Available">
@@ -181,7 +181,7 @@ function Price(props) {
             <h1>Start Keeping <br></br>
                 Your Passwords Safe</h1>
                 <div className="Tables">
-                    <div className="Free">
+                    <div className="Table Free">
                         <div className="Header-Wrapper"><h2>Free</h2></div>
                         <div className="Tda">Logins</div>
                         <div className="Tdb">Easy Import</div>
@@ -191,7 +191,7 @@ function Price(props) {
                           <button onClick={props.onSubmit}>SIGN UP</button>
                         </div>
                     </div>
-                    <div className="Pro">
+                    <div className="Table Pro">
                         <div className="Header-Wrapper">
 							<h2>PRO</h2>
 							<h3>$2 <span className="Month">/month</span></h3>
