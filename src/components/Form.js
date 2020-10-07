@@ -20,6 +20,15 @@ function Form() {
 
 	const [step, setStep] = useState(1);
 
+	// const Paddle = window.Paddle;
+    // const email = document.getElementById('email').value;
+    // const openCheckout  = () => { 
+    //     Paddle.Checkout.open({ 
+    //         product: 630862,
+    //         email: email
+    //     });
+    // }
+
 	const onSubmit = data => {
 		data.name = DOMPurify.sanitize(data.name);
 		data.email = DOMPurify.sanitize(data.email);
@@ -42,13 +51,13 @@ function Form() {
 		})
 	};
 
-	if (step==1) {
+	if (step===1) {
 		return (
 			<Price onSubmit={() => setStep(2)} />
 		  );
 	}
 
-	if (step==2) {
+	if (step===2) {
 		return (
 			<div className="Form">
 				<div className="SignupForm">
@@ -76,6 +85,7 @@ function Form() {
 				<label>
 					Email
 					<input
+					id="email"
 					name="email"
 					type="email"
 					ref={register({
@@ -126,7 +136,8 @@ function Form() {
 					/>
 					{errors.master_password_confirm && <span className="error">{errors.master_password_confirm.message}</span>}
 				</label>
-
+				{/* Paddle Button */}
+				{/* <button onClick={openCheckout}>Subscribe Now!</button> */}
 				<button>Create My Account</button>
 				</form>
 				</div>
@@ -138,7 +149,7 @@ function Form() {
 		);
 	}
 
-	if (step==3) {
+	if (step===3) {
 		return (
 			<Welcome />
 		);
@@ -181,7 +192,10 @@ function Price(props) {
                         </div>
                     </div>
                     <div className="Pro">
-                        <div className="Header-Wrapper"><h2>PRO</h2></div>
+                        <div className="Header-Wrapper">
+							<h2>PRO</h2>
+							<h3>$2 <span className="Month">/month</span></h3>
+						</div>
                         <div className="Tda">Everything in free</div>
                         <div className="Tdb">Emails</div>
                         <div className="Tda">Bank Accounts</div>

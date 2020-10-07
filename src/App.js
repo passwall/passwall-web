@@ -3,8 +3,7 @@ import Menu from './components/Menu';
 import Logo from './components/Logo';
 import Download from './components/Download';
 import Form from './components/Form';
-import KeepInMind from './components/KeepInMind';
-import Paddle from './components/Paddle';
+// import Paddle from './components/Paddle';
 import './App.css';
 
 

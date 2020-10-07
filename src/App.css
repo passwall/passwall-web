@@ -401,6 +401,8 @@ a.platform:hover {
 .Price .Pro .Header-Wrapper {
   background-color: #0A0F17;
   border-radius: 16px 16px 0 0;
+  display: flex;
+  justify-content: space-between;
 }
 
 .Price .Pro .Header-Wrapper h2 {
@@ -416,6 +418,21 @@ a.platform:hover {
   background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
+}
+
+
+.Price .Pro .Header-Wrapper h3 {
+  margin:26px 32px 32px 32px;
+  font-size: 32px;
+  font-weight: 700;
+  /* Fallback Color */
+  color: #FFFFFF;
+  display: inline-block;
+}
+
+.Price .Pro .Header-Wrapper h3 .Month{
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .Price .Footer-Wrapper {
