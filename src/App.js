@@ -32,7 +32,10 @@ function App() {
                     setHamburgerOpen={setHamburgerOpen}
                 />
                 <div className="Download">
-                    <Download />
+                    <Download
+                        name="MacOS"
+                        url="https://passwall.io/download/passwall-macos/"
+                    />
                 </div>
             </div>
 

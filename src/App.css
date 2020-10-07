@@ -89,13 +89,8 @@ a:hover {
 .Menu {
   margin: -20px 0 0 -20px;
   color: #61dafb;
+  display: flex;
   width: 80%;
-}
-
-@media all and (min-width: 960px){
-  .Menu {
-    display: flex;
-  }
 }
 
 .Menu a {
@@ -105,6 +100,10 @@ a:hover {
   padding: 20px;
   color: #FFFFFF;
   text-decoration: none;
+}
+
+.Menu a.platform {
+  display: none;
 }
 
 .Logo {
@@ -512,8 +511,14 @@ a.platform:hover {
     padding: 24px;
   }
 
+  .Logo {
+    position: relative;
+    z-index: 200;
+  }
+
   .Hamburger {
     display: block;
+    z-index: 200;
   }
 
   .Price .Tables {
@@ -539,24 +544,39 @@ a.platform:hover {
 
   .Menu {
     display: block;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
-    transform: translateY(-100%);
+    transform: translateX(-100%);
     width: 100%;
-    background-color: #5707FF;
-    padding: 70px 30px 30px 30px;
+    background-color: #000000;
+    padding: 170px 30px 30px 30px;
     margin: 0;
     text-align: center;
     transition: .25s ease-in-out;
+    box-sizing: border-box;
+    height: 100vh;
+    z-index: 100;
   }
 
   .Menu-Open {
-    transform: translateY(0);
+    transform: translateX(0);
   }
 
   .Menu a {
     display: block;
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+
+  .Menu a.platform {
+    display: block;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .Menu a:last-of-type {
+    margin-bottom: 0;
   }
 
   .SignupForm, .Welcome {

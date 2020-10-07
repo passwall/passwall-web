@@ -1,4 +1,5 @@
 import React from 'react';
+import Download from './Download';
 
 const Menu = ({
     menuOpen
@@ -17,6 +18,18 @@ const Menu = ({
     return (
         <div className={menuClasses.join(" ")}>
             {links}
+            <Download
+                name="MacOS"
+                url="https://passwall.io/download/passwall-macos/"
+            />
+            <Download
+                name="Firefox"
+                url="https://passwall.io/download/passwall-macos/"
+            />
+            <Download
+                name="Android"
+                url="https://passwall.io/download/passwall-macos/"
+            />
         </div>
     )
 }
