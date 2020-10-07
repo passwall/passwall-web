@@ -1,7 +1,11 @@
-@import url('https://rsms.me/inter/inter.css');
-html { font-family: 'Inter', sans-serif; }
+@import url("https://rsms.me/inter/inter.css");
+html {
+  font-family: "Inter", sans-serif;
+}
 @supports (font-variation-settings: normal) {
-  html { font-family: 'Inter var', sans-serif; }
+  html {
+    font-family: "Inter var", sans-serif;
+  }
 }
 
 * {
@@ -17,7 +21,7 @@ a:hover {
 .App {
   display: flex;
   min-height: 100vh;
-  background-color: #06070A;
+  background-color: #06070a;
 }
 
 /* LEFT SIDE ********** */
@@ -31,7 +35,7 @@ a:hover {
   background-color: #000000;
   background-image: url(./images/bg-image.png);
   background-position: bottom;
-  background-size:auto 100%;
+  background-size: auto 100%;
   background-repeat: no-repeat;
   padding: 48px;
 }
@@ -44,10 +48,10 @@ a:hover {
   width: 462px;
 }
 
-.Menu a{
+.Menu a {
   font-weight: 500;
   font-size: 16px;
-  color: #FFFFFF;
+  color: #ffffff;
   text-decoration: none;
 }
 
@@ -58,13 +62,12 @@ a:hover {
 
   /* Self */
   flex-grow: 1;
-  align-self:center;
+  align-self: center;
 }
 
 .Download {
   color: #61dafb;
-  align-self:center;
-  
+  align-self: center;
 }
 
 a.platform {
@@ -72,12 +75,12 @@ a.platform {
   padding: 8px 38px 8px 24px;
 
   text-decoration: none;
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 14px;
   font-weight: 600;
   line-height: 24px;
-  
-  border: 1px solid #5707FF;
+
+  border: 1px solid #5707ff;
   box-sizing: border-box;
   border-radius: 8px;
 
@@ -88,20 +91,22 @@ a.platform {
 }
 
 a.platform:hover {
-  background-color: #5707FF;
+  background-color: #5707ff;
 }
 
 /* RIGHT SIDE ********** */
 .Right {
-  display: flex;  
+  display: flex;
   flex: 0 1 50%;
   flex-direction: column;
-  background-color: #06070A;
+  background-color: #06070a;
 }
 
 /* RIGHT BOTTOM ********** */
 .KeepInMind {
   /* As Parent */
+  position: absolute;
+  bottom: 0;
   display: flex;
   flex-direction: column;
   align-items: left;
@@ -109,33 +114,34 @@ a.platform:hover {
   /* Self */
   align-self: flex-end;
   width: 100%;
-  height:96px;
-  background-color: #0A0F17;
-  padding:24px;
+  height: 96px;
+  background-color: #0a0f17;
+  padding: 24px;
 }
 
 .KeepInMind h3 {
-  color: #00FFD1;
+  color: #00ffd1;
   font-size: 14px;
   line-height: 22px;
-  margin-bottom:8px;
+  margin-bottom: 8px;
 }
 
 .KeepInMind p {
   font-size: 12px;
-  color: #8B93A2;
+  color: #8b93a2;
 }
 
 /* RIGHT TOP ********** */
 .Form {
   /* Self */
+  position: relative;
   flex-grow: 1;
-  margin-top: 96px;
+  margin-top: 60px;
 
   /* As Parent */
   display: flex;
   flex-direction: column;
-  justify-content: center;  
+  justify-content: center;
   align-items: center;
 }
 
@@ -144,11 +150,11 @@ a.platform:hover {
   flex-grow: 1;
   margin-top: 96px;
   align-self: center;
-  
+
   /* As Parent */
   display: flex;
   flex-direction: column;
-  
+
   width: 400px;
   height: 592px;
 }
@@ -156,21 +162,21 @@ a.platform:hover {
 .Welcome h3 {
   font-weight: 500;
   font-size: 16px;
-  color: #00FFD1;
-  margin-bottom:8px;
+  color: #00ffd1;
+  margin-bottom: 8px;
 }
 
 .Welcome h2 {
   font-weight: bold;
   font-size: 32px;
-  color: #FFFFFF;
+  color: #ffffff;
   padding: 0px !important;
   margin-bottom: 20px !important;
 }
 
 .Welcome p {
   font-size: 16px;
-  color: #FFFFFF;
+  color: #ffffff;
   padding: 0px !important;
   margin-bottom: 10px;
   /* margin: 0px !important; */
@@ -183,8 +189,8 @@ a.platform:hover {
   margin-top: 58px;
 }
 
-.Available p{
-  color:#FFFFFF;
+.Available p {
+  color: #ffffff;
 }
 
 .ComingSoon {
@@ -192,7 +198,7 @@ a.platform:hover {
   flex-wrap: wrap;
 }
 
-.ComingSoon p{
+.ComingSoon p {
   display: block;
   flex: 1 1 100%;
   margin-top: 32px;
@@ -203,12 +209,12 @@ a.platform:hover {
   display: block;
   padding: 8px 38px 8px 24px;
 
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 14px;
   font-weight: 600;
   line-height: 24px;
-  
-  border: 1px solid #151C27;
+
+  border: 1px solid #151c27;
   box-sizing: border-box;
   border-radius: 8px;
 
@@ -217,11 +223,11 @@ a.platform:hover {
 
 .SignupForm {
   /* Self */
-  
+
   /* As Parent */
   display: flex;
   flex-direction: column;
-  
+
   width: 400px;
   min-height: 592px;
 }
@@ -229,21 +235,21 @@ a.platform:hover {
 .SignupForm h3 {
   font-weight: 500;
   font-size: 16px;
-  color: #00FFD1;
-  margin-bottom:8px;
+  color: #00ffd1;
+  margin-bottom: 8px;
 }
 
 .SignupForm h2 {
   font-weight: bold;
   font-size: 32px;
-  color: #FFFFFF;
+  color: #ffffff;
   padding: 0px !important;
   margin-bottom: 20px !important;
 }
 
 .SignupForm p {
   font-size: 16px;
-  color: #FFFFFF;
+  color: #ffffff;
   padding: 0px !important;
   margin-bottom: 10px;
   /* margin: 0px !important; */
@@ -255,7 +261,7 @@ a.platform:hover {
 
   margin-top: 32px;
   margin-bottom: 0.5em;
-  color: #FFFFFF;
+  color: #ffffff;
   font-weight: 500;
   font-size: 14px;
   line-height: 22px;
@@ -264,22 +270,22 @@ a.platform:hover {
 .SignupForm input {
   display: flex;
   flex-direction: column;
-  padding-left:18px;
-  padding-right:18px;
+  padding-left: 18px;
+  padding-right: 18px;
   width: 100%;
   height: 48px;
-  
-  border: 1px solid #151C27;
-  background-color: #06070A;
+
+  border: 1px solid #151c27;
+  background-color: #06070a;
   box-sizing: border-box;
   border-radius: 8px;
 
   font-size: 12px;
-  color:#FFFFFF;
+  color: #ffffff;
 }
 
 .SignupForm input:focus {
-  border: 1px solid #5707FF;
+  border: 1px solid #5707ff;
 }
 
 .SignupForm button {
@@ -290,15 +296,18 @@ a.platform:hover {
   border: none;
   opacity: 0.5;
   border-radius: 8px;
-  background: #5707FF;
+  background: #5707ff;
   color: #fefefe;
 }
-.SignupForm button:hover, .SignupForm button:active, .SignupForm button:focus {
+.SignupForm button:hover,
+.SignupForm button:active,
+.SignupForm button:focus {
   opacity: 1;
 }
 
-.SignupForm span.error, .error {
-  color:#FF5151;
+.SignupForm span.error,
+.error {
+  color: #ff5151;
   font-size: 12px;
   display: relative;
 }
@@ -319,31 +328,31 @@ a.platform:hover {
   flex-direction: column;
   /* justify-content: center;   */
   align-items: top;
-  align-self:center;
+  align-self: center;
 }
 
-.Price h1{
+.Price h1 {
   font-size: 48px;
   font-weight: 700;
-  color: #FFFFFF;
-  margin-bottom:48px;
+  color: #ffffff;
+  margin-bottom: 48px;
   /* min-width: 592px; */
   /* width: 400px;
   min-height: 592px; */
 }
 
-.Price .Tables{
+.Price .Tables {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.Price .Free{
+.Price .Free {
   /* Self */
   width: 280px;
   height: 511px;
-  background-color: #0A0F17;
-  border: 2px solid #10161F;
+  background-color: #0a0f17;
+  border: 2px solid #10161f;
   box-sizing: border-box;
   border-radius: 16px;
 
@@ -351,41 +360,40 @@ a.platform:hover {
   display: flex;
   flex-direction: column;
   align-items: top;
-  align-self:center;
-  
+  align-self: center;
 }
 
-.Price .Free .Header-Wrapper h2{
+.Price .Free .Header-Wrapper h2 {
   font-size: 32px;
   font-weight: 700;
-  color: #FFFFFF;
-  margin:26px 0px 32px 32px;
+  color: #ffffff;
+  margin: 26px 0px 32px 32px;
 }
 
-.Price .Tda{
+.Price .Tda {
   font-size: 16px;
   font-weight: 500;
-  color: #FFFFFF;
-  background-color: #06070A;
-  padding:16px;
+  color: #ffffff;
+  background-color: #06070a;
+  padding: 16px;
 }
 
-.Price .Tdb{
+.Price .Tdb {
   font-size: 16px;
   font-weight: 500;
-  color: #FFFFFF;
-  background-color: #0A0F17;
-  padding:16px;
+  color: #ffffff;
+  background-color: #0a0f17;
+  padding: 16px;
 }
 
-.Price .Pro{
+.Price .Pro {
   /* Self */
   width: 280px;
   height: 511px;
   box-sizing: border-box;
   border-radius: 16px;
   /* Gradient Border */
-  background: linear-gradient(29.54deg, #00FFD1, #5707FF);
+  background: linear-gradient(29.54deg, #00ffd1, #5707ff);
   border: 2px solid transparent;
   background-repeat: no-repeat;
   background-origin: border-box;
@@ -395,11 +403,11 @@ a.platform:hover {
   display: flex;
   flex-direction: column;
   align-items: top;
-  align-self:center;
+  align-self: center;
 }
 
 .Price .Pro .Header-Wrapper {
-  background-color: #0A0F17;
+  background-color: #0a0f17;
   border-radius: 16px 16px 0 0;
   display: flex;
   justify-content: space-between;
@@ -408,11 +416,11 @@ a.platform:hover {
 .Price .Pro .Header-Wrapper h2 {
   font-size: 32px;
   font-weight: 700;
-  margin:26px 0px 32px 32px;
+  margin: 26px 0px 32px 32px;
   /* Fallback Color */
-  color: #00FFD1;
+  color: #00ffd1;
   /* Gradient */
-  background: linear-gradient(258.74deg, #FFF 0.38%, #FFF0 161.64%), #00FFD1;
+  background: linear-gradient(258.74deg, #fff 0.38%, #fff0 161.64%), #00ffd1;
   -webkit-background-clip: text;
   -moz-background-clip: text;
   background-clip: text;
@@ -420,23 +428,37 @@ a.platform:hover {
   display: inline-block;
 }
 
-
-.Price .Pro .Header-Wrapper h3 {
-  margin:26px 32px 32px 32px;
+.formTitle h3 {
   font-size: 32px;
   font-weight: 700;
   /* Fallback Color */
-  color: #FFFFFF;
+  color: #00ffd1;
+  /* Gradient */
+  background: linear-gradient(258.74deg, #fff 0.38%, #fff0 161.64%), #00ffd1;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  text-align: left;
+}
+
+.Price .Pro .Header-Wrapper h3 {
+  margin: 26px 32px 32px 32px;
+  font-size: 32px;
+  font-weight: 700;
+  /* Fallback Color */
+  color: #ffffff;
   display: inline-block;
 }
 
-.Price .Pro .Header-Wrapper h3 .Month{
+.Price .Pro .Header-Wrapper h3 .Month {
   font-size: 16px;
   font-weight: 500;
 }
 
 .Price .Footer-Wrapper {
-  background-color: #0A0F17;
+  background-color: #0a0f17;
   border-radius: 0 0 16px 16px;
   text-align: center;
 }
@@ -444,11 +466,11 @@ a.platform:hover {
 .Price .Footer-Wrapper button {
   width: 216px;
   height: 52px;
-  border:none;
+  border: none;
   font-size: 16px;
   font-weight: 700;
-  color: #FFFFFF;
-  background: #5707FF;
+  color: #ffffff;
+  background: #5707ff;
   border-radius: 12px;
   margin-bottom: 24px;
 }
@@ -457,23 +479,24 @@ a.platform:hover {
   flex-grow: 1;
 }
 
-
 @media only screen and (max-width: 600px) {
   .App {
-   flex-direction: column;
+    flex-direction: column;
   }
   .Left {
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-  
+
     background: none;
     padding: 0px;
   }
-  .Menu, .Download {
+  .Menu,
+  .Download {
     display: none;
   }
-  .SignupForm, .Welcome {
+  .SignupForm,
+  .Welcome {
     padding: 24px;
   }
 
@@ -483,19 +506,18 @@ a.platform:hover {
   }
 
   .Logo {
-    
-    align-self:flex-start;
-    padding:24px;
+    align-self: flex-start;
+    padding: 24px;
   }
 
-  .Logo img{
+  .Logo img {
     height: 32px;
   }
 
   .Top h3 {
     font-size: 14px;
   }
-  
+
   .Top h2 {
     font-size: 24px;
   }

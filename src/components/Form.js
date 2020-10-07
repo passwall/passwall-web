@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import CryptoJS from "crypto-js";
 import Api from "./Api";
 import Download from "./Download";
+import BackIcon from "./BackIcon";
 import ComingSoon from "./ComingSoon";
 import ReCAPTCHA from "react-google-recaptcha";
 import DOMPurify from "dompurify";
@@ -91,9 +92,31 @@ function Form() {
   }
 
   if (step === 2) {
+    const Title = () =>
+      paid ? (
+        <div className="formTitle">
+          <h3>Create a PRO account</h3>
+        </div>
+      ) : (
+        <div className="formTitle">
+          <h3>PRO will be here soon, until then</h3>
+          <h2>Create a free account</h2>
+        </div>
+      );
     return (
       <div className="Form">
         <div className="SignupForm">
+          <BackIcon
+            color="white"
+            height="30"
+            width="30"
+            style={{
+              alignSelf: "flex-start",
+              marginBottom: 12,
+              cursor: "pointer",
+            }}
+            onClick={() => setStep(1)}
+          />
           <form onSubmit={handleSubmit(onSubmit)}>
             <ReCAPTCHA
               onChange={onChange}
@@ -101,8 +124,7 @@ function Form() {
               size="invisible"
               sitekey="6LcbOP0UAAAAAK1Zc6jNtrIF34pMBNPGaDaz3VpY"
             />
-            <h3>PRO will be here soon, until then</h3>
-            <h2>Create a free account</h2>
+            <Title />
             <label>
               Full Name
               <input
