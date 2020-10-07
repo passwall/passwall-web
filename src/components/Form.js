@@ -11,13 +11,6 @@ import DOMPurify from "dompurify";
 const recaptchaRef = React.createRef();
 
 function onChange(value) {
-  console.log("Captcha value:", value);
-}
-
-function Form() {
-  const { register, handleSubmit, errors, getValues } = useForm({
-    validateCriteriaMode: "all",
-  });
 
   const [step, setStep] = useState(1);
   const [paid, setPaid] = useState(false);
