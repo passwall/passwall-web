@@ -359,7 +359,7 @@ a.platform:hover {
   font-size: 32px;
   font-weight: 700;
   color: #ffffff;
-  margin:26px 0px 32px 32px;
+  margin: 26px 0px 32px 32px;
 }
 
 .Price .Tda{
@@ -367,7 +367,7 @@ a.platform:hover {
   font-weight: 500;
   color: #ffffff;
   background-color: #06070a;
-  padding:13px;
+  padding: 13px;
   display: inline-flex;
 }
 
@@ -376,7 +376,7 @@ a.platform:hover {
   font-weight: 500;
   color: #ffffff;
   background-color: #0a0f17;
-  padding:13px;
+  padding: 13px;
   display: inline-flex;
 }
 
