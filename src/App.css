@@ -358,15 +358,15 @@ a.platform:hover {
 .Price .Free .Header-Wrapper h2{
   font-size: 32px;
   font-weight: 700;
-  color: #FFFFFF;
+  color: #ffffff;
   margin:26px 0px 32px 32px;
 }
 
 .Price .Tda{
   font-size: 16px;
   font-weight: 500;
-  color: #FFFFFF;
-  background-color: #06070A;
+  color: #ffffff;
+  background-color: #06070a;
   padding:13px;
   display: inline-flex;
 }
@@ -374,8 +374,8 @@ a.platform:hover {
 .Price .Tdb{
   font-size: 16px;
   font-weight: 500;
-  color: #FFFFFF;
-  background-color: #0A0F17;
+  color: #ffffff;
+  background-color: #0a0f17;
   padding:13px;
   display: inline-flex;
 }
@@ -457,13 +457,21 @@ a.platform:hover {
 
 .Grow {
   flex-grow: 1;
+  
 }
+
 
 .svgForm {
   height: 1em;
   fill: #53ffd1;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
+.Grow .svgForm {
+  margin-top: 4px;
+  
+}
 
 @media only screen and (max-width: 600px) {
   .App {
