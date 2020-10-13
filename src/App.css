@@ -441,7 +441,8 @@ a.platform:hover {
   font-weight: 500;
   color: #ffffff;
   background-color: #06070a;
-  padding: 16px;
+  padding: 13px;
+  display: inline-flex;
 }
 
 .Price .Tdb {
@@ -449,7 +450,8 @@ a.platform:hover {
   font-weight: 500;
   color: #ffffff;
   background-color: #0a0f17;
-  padding: 16px;
+  padding: 13px;
+  display: inline-flex;
 }
 
 .Price .Pro {
@@ -543,8 +545,21 @@ a.platform:hover {
 
 .Grow {
   flex-grow: 1;
+  
 }
 
+
+.svgForm {
+  height: 1em;
+  fill: #53ffd1;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.Grow .svgForm {
+  margin-top: 4px;
+  
+}
 @media only screen and (max-width: 600px) {
   .App {
     flex-direction: column;
