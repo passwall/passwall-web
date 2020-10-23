@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200;300;400;500;600;700&family=Inter:wght@100;300;500;700;900&display=swap');
+@import 'variables.css';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  background-color: var(--c-black);
+  color: var(--c-text);
+}
+
+img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+a {
+  text-decoration: none;
+  color: var(--c-text);
+}
+
+.contentBody {
+  display: flex;
+  flex-direction: column;
+
+  @media (--d) {
+    flex-direction: row;
+  }
+}
+
+.cards {
+  margin-top: 48px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 32px;
+
+  @media (--d) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  padding: 10px 30px;
+  overflow-x: auto;
+
+  @media (--md) {
+    padding: 40px 64px;
+  }
+}
+
+.containerIndex {
+  width: 100%;
+  height: 100%;
+  padding: 10px 30px;
+  overflow-x: auto;
+
+  @media (--d) {
+    padding: 100px 30px;
+  }
+
+  @media (--md) {
+    padding: 64px;
+  }
+}
+
+.thankyou {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .platforms {
+    margin-top: 100px;
+    font-weight: 500;
+  }
+
+  .downloadSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 15px;
+
+    button {
+      margin-right: 10px;
+      margin-bottom: 20px;
+
+      @media (--d) {
+        margin-bottom: 0px;
+      }
+    }
+
+    @media (--d) {
+      flex-direction: row;
+    }
+  }
+
+  .content {
+    max-width: 90%;
+
+    @media (--d) {
+      max-width: 95%;
+    }
+
+    @media (--md) {
+      max-width: 60%;
+    }
+  }
+  .soonText {
+    margin-top: 30px;
+    color: var(--c-dark-30);
+  }
+  .soon {
+    width: 50%;
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px;
+  }
+}
+
+.Toastify__toast {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 24px 0px 24px;
+  background-color: var(--c-dark-50);
+  border-radius: 8px;
+}
