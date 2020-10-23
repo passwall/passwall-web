@@ -1,0 +1,85 @@
+.nav {
+  padding: 40px 120px 0 120px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+
+  a {
+    color: inherit;
+  }
+
+  a + a {
+    margin-left: 10px;
+  }
+}
+
+.mobileNav {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+
+  .navHead {
+    display: flex;
+    align-items: center;
+    height: 80px;
+    width: 100%;
+    position: relative;
+
+    .logo {
+      margin-left: 24px;
+    }
+  }
+
+  .navLinks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    list-style-type: none;
+    margin-top: 30px;
+    padding: 0;
+    height: 0;
+    overflow: hidden;
+    transition: var(--fade);
+
+    li {
+      padding: 20px;
+    }
+  }
+
+  .hamburger {
+    position: absolute;
+    right: 5%;
+    z-index: 2;
+    cursor: pointer;
+
+    .line {
+      width: 30px;
+      height: 3px;
+      background-color: white;
+      margin: 5px;
+    }
+  }
+
+  .navOpen {
+    height: 100vh;
+  }
+  @media (--d) {
+    display: none;
+  }
+}
+
+
+.downloadSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  button {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
