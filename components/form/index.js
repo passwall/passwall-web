@@ -106,14 +106,12 @@ export default function Form({ formType = FORM_TYPES.FREE }) {
   }
 
   const registerAPI = ({ name, email, password }) => {
-    Api.post(`/auth/signup?api_key=${process.env.NEXT_PUBLIC_API_KEY}`, {
+    return Api.post(`/auth/signup?api_key=${process.env.NEXT_PUBLIC_API_KEY}`, {
       name,
       email,
       master_password: CryptoJS.SHA256(password).toString()
     })
-      .then((data) => {
-        router.push('/thankyou')
-      })
+      .then((data) => Promise.resolve(data))
       .catch((err) => {
         if (err.response.status === 400) {
           console.log(err.response.data.errors)
@@ -122,24 +120,25 @@ export default function Form({ formType = FORM_TYPES.FREE }) {
           console.error(err)
           toast(<ErrorMsg messages={['Server Error']} />)
         }
+        return Promise.reject(err);
       })
   }
 
   const onSubmit = ({ name, email, password }) => {
-    if (formType === FORM_TYPES.PRO) {
-      paid({
-        email,
-        successCallback: (data) => {
-          registerAPI({ name, email, password })
-        },
-        closeCallback: (reason) => {
-          console.warn(reason)
+    registerAPI({ name, email, password })
+      .then((data) => {
+        if (formType === FORM_TYPES.PRO) {
+          paid({
+            email,
+            successCallback: () => router.push('/tkankyou'),
+            closeCallback: (reason) => console.warn(reason)
+          })
+          return
+        } else {
+          router.push('/thankyou')
         }
       })
-      return;
-    } else {
-      registerAPI({ name, email, password })
-    }
+      .catch((err) => console.error(err))
   }
 
   return (
