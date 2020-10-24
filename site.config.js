@@ -1,11 +1,11 @@
 module.exports = {
   title: 'Passwall',
   description: 'Passwall Open Source Password Manager',
-  siteUrl: 'https://github.com/passwall',
-  googleAnalytic: 'X-XXXXXXXXXX',
+  siteUrl: 'https://passwall.io',
+  googleAnalytic: 'G-RDV50V3VVK',
   author: {
-    email: 'ooruc471@yandex.com',
-    name: 'Ömer Faruk Oruç'
+    email: 'hello@passwall.io',
+    name: 'PassWall'
   },
   lang: 'en'
 }
