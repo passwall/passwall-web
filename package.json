@@ -23,6 +23,7 @@
     "next-pwa": "^3.1.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-google-recaptcha-v3": "^1.6.1",
     "react-hook-form": "^6.9.5",
     "react-toastify": "^6.0.9",
     "sass": "^1.27.0",
@@ -30,15 +31,18 @@
   },
   "devDependencies": {
     "@babel/core": "^7.11.0",
-    "@storybook/addons": "^5.3.19",
-    "@storybook/react": "^5.3.19",
+    "@storybook/addon-controls": "^6.0.27",
+    "@storybook/addon-essentials": "^6.0.27",
+    "@storybook/addons": "^6.0.27",
+    "@storybook/react": "^6.0.27",
     "@svgr/cli": "^5.4.0",
     "babel-loader": "^8.1.0",
-    "css-loader": "^4.2.0",
+    "css-loader": "^5.0.0",
     "postcss-custom-media": "^7.0.8",
     "postcss-loader": "^3.0.0",
     "postcss-nested": "^4.2.3",
     "prettier": "^2.0.5",
-    "style-loader": "^1.2.1"
+    "sass-loader": "^10.0.4",
+    "style-loader": "^2.0.0"
   }
 }

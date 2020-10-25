@@ -7,6 +7,10 @@ import * as yup from 'yup'
 import cn from 'classnames'
 import styles from './index.module.scss'
 import * as Icons from 'heroicons-react'
+import {
+  GoogleReCaptchaProvider,
+  GoogleReCaptcha
+} from 'react-google-recaptcha-v3'
 
 import Text from '../text'
 import Button from '../button'
@@ -120,7 +124,7 @@ export default function Form({ formType = FORM_TYPES.FREE }) {
           console.error(err)
           toast(<ErrorMsg messages={['Server Error']} />)
         }
-        return Promise.reject(err);
+        return Promise.reject(err)
       })
   }
 
@@ -184,6 +188,12 @@ export default function Form({ formType = FORM_TYPES.FREE }) {
           register={register()}
           errors={errors.passwordConfirm}
         />
+        <GoogleReCaptchaProvider reCaptchaKey="6LdKOtsZAAAAABJxVylqGjIjjWGS0vDzR1cw_Mhj">
+          <GoogleReCaptcha onVerify={(value) => {
+            console.log(value)
+          }} />
+        </GoogleReCaptchaProvider>
+
         <Button type="submit" value="Submit">
           <Text tag="p" theme="regular" className={styles.btn}>
             {formType === FORM_TYPES.PRO
