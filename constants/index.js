@@ -7,38 +7,38 @@ export const THEME = {
 
 export const PAGES = {
   FeedBack: {
-    path: '/',
+    path: 'https://passwall.typeform.com/to/GAv1h2',
     name: 'Give Feedback',
-    external: false
+    external: true
   },
   Contact: {
-    path: '/',
+    path: 'https://passwall.typeform.com/to/b2un6b',
     name: 'Contact',
-    external: false
+    external: true
   },
   Community: {
-    path: '/',
+    path: 'https://github.com/passwall',
     name: 'Community',
-    external: false
+    external: true
   },
   Twitter: {
-    path: '/',
+    path: 'https://twitter.com/pass_wall',
     name: 'Twitter',
-    external: false
+    external: true
   }
 }
 
 export const DOWLOAD_LINKS = [
   {
     name: 'MacOS',
+    link: 'https://github.com/passwall/passwall-desktop/releases/download/v1.0.0/PassWall-1.0.0.dmg'
+  },
+  {
+    name: 'Linux (Soon)',
     link: '#'
   },
   {
-    name: 'Linux',
-    link: '#'
-  },
-  {
-    name: 'Windows',
+    name: 'Windows (Soon)',
     link: '#'
   }
 ]
@@ -76,7 +76,7 @@ export const FREE_TIER = [
     icon: Icons.CloudDownload
   },
   {
-    name: 'Some Other Pro',
+    name: 'Free Updates',
     icon: Icons.Users
   }
 ]
