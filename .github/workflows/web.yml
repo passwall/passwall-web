@@ -23,7 +23,7 @@ jobs:
           cd /opt/passwall-web
           git pull
           /usr/bin/yarn install
-          /usr/bin/yarn build
+          /usr/bin/yarn run next build && /usr/bin/yarn run next export
 
   #   - name: Set up Go 1.x
   #     uses: actions/setup-go@v2
