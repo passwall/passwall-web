@@ -18,7 +18,7 @@ jobs:
       with:
         host: ${{ secrets.REMOTE_HOST }}
         username: ${{ secrets.REMOTE_USER }}
-        key: ${{ secrets.SERVER_SSH_KEY }}
+        key: ${{ secrets.REMOTE_KEY }}
         script: |
           cd /opt/passwall-web
           git pull
