@@ -188,7 +188,7 @@ export default function Form({ formType = FORM_TYPES.FREE }) {
           register={register()}
           errors={errors.passwordConfirm}
         />
-        <GoogleReCaptchaProvider reCaptchaKey="6LdKOtsZAAAAABJxVylqGjIjjWGS0vDzR1cw_Mhj">
+        <GoogleReCaptchaProvider reCaptchaKey="6LeCutsZAAAAAOe6R_QaW1TFTbFBWsjR305qKEVh">
           <GoogleReCaptcha onVerify={(value) => {
             console.log(value)
           }} />
