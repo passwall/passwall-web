@@ -110,7 +110,7 @@ export default function Form({ formType = FORM_TYPES.FREE }) {
   }
 
   const registerAPI = ({ name, email, password }) => {
-    return Api.post(`/auth/signup?api_key=${process.env.NEXT_PUBLIC_API_KEY}`, {
+    return Api.post(`/auth/signup`, {
       name,
       email,
       master_password: CryptoJS.SHA256(password).toString()
