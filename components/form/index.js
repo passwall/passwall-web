@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -91,6 +91,8 @@ export default function Form({ formType = FORM_TYPES.FREE }) {
     resolver: yupResolver(schema)
   })
 
+  const [g_captcha_value, setgCaptchaValue] = useState('')
+
   React.useEffect(() => {
     Paddle.Setup({ vendor: 121559 })
   }, [])
@@ -113,6 +115,7 @@ export default function Form({ formType = FORM_TYPES.FREE }) {
     return Api.post(`/auth/signup`, {
       name,
       email,
+      g_captcha_value,
       master_password: CryptoJS.SHA256(password).toString()
     })
       .then((data) => Promise.resolve(data))
@@ -130,14 +133,13 @@ export default function Form({ formType = FORM_TYPES.FREE }) {
 
   const onSubmit = ({ name, email, password }) => {
     registerAPI({ name, email, password })
-      .then((data) => {
+      .then(() => {
         if (formType === FORM_TYPES.PRO) {
-          paid({
+          return paid({
             email,
-            successCallback: () => router.push('/tkankyou'),
+            successCallback: () => router.push('/thankyou'),
             closeCallback: (reason) => console.warn(reason)
           })
-          return
         } else {
           router.push('/thankyou')
         }
@@ -188,10 +190,13 @@ export default function Form({ formType = FORM_TYPES.FREE }) {
           register={register()}
           errors={errors.passwordConfirm}
         />
+
         <GoogleReCaptchaProvider reCaptchaKey="6LeCutsZAAAAAOe6R_QaW1TFTbFBWsjR305qKEVh">
-          <GoogleReCaptcha onVerify={(value) => {
-            console.log(value)
-          }} />
+          <GoogleReCaptcha
+            onVerify={(value) => {
+              setgCaptchaValue(value)
+            }}
+          />
         </GoogleReCaptchaProvider>
 
         <Button type="submit" value="Submit">
