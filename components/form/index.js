@@ -194,7 +194,6 @@ export default function Form({ formType = FORM_TYPES.FREE }) {
         <GoogleReCaptchaProvider reCaptchaKey="6LeCutsZAAAAAOe6R_QaW1TFTbFBWsjR305qKEVh">
           <GoogleReCaptcha
             onVerify={(value) => {
-              console.log(value)
               setgCaptchaValue(value)
             }}
           />
