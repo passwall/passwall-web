@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -92,6 +92,7 @@ export default function Form({ formType = FORM_TYPES.FREE }) {
   })
 
   const [g_captcha_value, setgCaptchaValue] = useState('')
+  const captchaRef = useRef(null)
 
   React.useEffect(() => {
     Paddle.Setup({ vendor: 121559 })
@@ -145,6 +146,7 @@ export default function Form({ formType = FORM_TYPES.FREE }) {
         }
       })
       .catch((err) => console.error(err))
+      .finally(() => captchaRef.current.executeRecaptcha());
   }
 
   return (
@@ -191,7 +193,10 @@ export default function Form({ formType = FORM_TYPES.FREE }) {
           errors={errors.passwordConfirm}
         />
 
-        <GoogleReCaptchaProvider reCaptchaKey="6LeCutsZAAAAAOe6R_QaW1TFTbFBWsjR305qKEVh">
+        <GoogleReCaptchaProvider
+          ref={captchaRef}
+          reCaptchaKey="6LeCutsZAAAAAOe6R_QaW1TFTbFBWsjR305qKEVh"
+        >
           <GoogleReCaptcha
             onVerify={(value) => {
               setgCaptchaValue(value)
