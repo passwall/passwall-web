@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -7,10 +7,7 @@ import * as yup from 'yup'
 import cn from 'classnames'
 import styles from './index.module.scss'
 import * as Icons from 'heroicons-react'
-import {
-  GoogleReCaptchaProvider,
-  GoogleReCaptcha
-} from 'react-google-recaptcha-v3'
+import ReCAPTCHA from 'react-google-recaptcha'
 
 import Text from '../text'
 import Button from '../button'
@@ -91,7 +88,7 @@ export default function Form({ formType = FORM_TYPES.FREE }) {
     resolver: yupResolver(schema)
   })
 
-  const [g_captcha_value, setgCaptchaValue] = useState('')
+  const captchaRef = useRef(null)
 
   React.useEffect(() => {
     Paddle.Setup({ vendor: 121559 })
@@ -111,7 +108,7 @@ export default function Form({ formType = FORM_TYPES.FREE }) {
     })
   }
 
-  const registerAPI = ({ name, email, password }) => {
+  const registerAPI = ({ name, email, password, g_captcha_value }) => {
     return Api.post(`/auth/signup`, {
       name,
       email,
@@ -131,8 +128,9 @@ export default function Form({ formType = FORM_TYPES.FREE }) {
       })
   }
 
-  const onSubmit = ({ name, email, password }) => {
-    registerAPI({ name, email, password })
+  const onSubmit = async ({ name, email, password }) => {
+    const g_captcha_value = await captchaRef.current.executeAsync()
+    registerAPI({ name, email, password, g_captcha_value })
       .then(() => {
         if (formType === FORM_TYPES.PRO) {
           return paid({
@@ -145,6 +143,7 @@ export default function Form({ formType = FORM_TYPES.FREE }) {
         }
       })
       .catch((err) => console.error(err))
+      .finally(() => captchaRef.current.reset())
   }
 
   return (
@@ -191,13 +190,11 @@ export default function Form({ formType = FORM_TYPES.FREE }) {
           errors={errors.passwordConfirm}
         />
 
-        <GoogleReCaptchaProvider reCaptchaKey="6LeCutsZAAAAAOe6R_QaW1TFTbFBWsjR305qKEVh">
-          <GoogleReCaptcha
-            onVerify={(value) => {
-              setgCaptchaValue(value)
-            }}
-          />
-        </GoogleReCaptchaProvider>
+        <ReCAPTCHA
+          ref={captchaRef}
+          sitekey="6LcbOP0UAAAAAK1Zc6jNtrIF34pMBNPGaDaz3VpY"
+          size="invisible"
+        />        
 
         <Button type="submit" value="Submit">
           <Text tag="p" theme="regular" className={styles.btn}>
