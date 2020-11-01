@@ -31,18 +31,17 @@ export const PAGES = {
 export const DOWLOAD_LINKS = [
   {
     name: 'MacOS',
-    link:
-      'https://github.com/passwall/passwall-desktop/releases/download/1.0.0/PassWall-1.0.0.dmg'
+    link:'https://github.com/passwall/passwall-desktop/releases/download/1.0.0/PassWall-MacOS-1.0.0.dmg'
   },
   {
     name: 'Windows',
     link: 'https://github.com/passwall/passwall-desktop/releases/download/1.0.0/PassWall-Windows-1.0.0.msi'
-  }
-  /*   {
-    name: 'Linux (Soon)',
-    link: '#'
   },
-  */
+  {
+    name: 'Linux',
+    link: 'https://github.com/passwall/passwall-desktop/releases/download/1.0.0/PassWall-Linux-1.0.0-amd64.deb'
+  }
+  
   
 ]
 
