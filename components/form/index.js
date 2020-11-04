@@ -145,7 +145,7 @@ export default function Form({ formType = FORM_TYPES.FREE }) {
         }
       })
       .catch((err) => console.error(err))
-      .finally(() => captchaRef.current.executeRecaptcha());
+      .finally(() => captchaRef.current.reset())
   }
 
   return (
@@ -194,9 +194,9 @@ export default function Form({ formType = FORM_TYPES.FREE }) {
 
         <ReCAPTCHA
           ref={captchaRef}
-          sitekey="6Ld4zt0ZAAAAAIH5q5ST2Bz0gXkOnv2DazaN40IG"
+          sitekey="6LcbOP0UAAAAAK1Zc6jNtrIF34pMBNPGaDaz3VpY"
           size="invisible"
-        />
+        />        
 
         <Button type="submit" value="Submit">
           <Text tag="p" theme="regular" className={styles.btn}>
