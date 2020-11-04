@@ -145,7 +145,7 @@ export default function Form({ formType = FORM_TYPES.FREE }) {
         }
       })
       .catch((err) => console.error(err))
-      .finally(() => captchaRef.current.reset())
+      .finally(() => captchaRef.current.executeRecaptcha());
   }
 
   return (
