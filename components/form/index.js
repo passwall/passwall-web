@@ -42,7 +42,7 @@ export const FORM_TYPES = {
 
 const schema = yup.object().shape({
   name: yup.string().matches(/^.[a-zA-ZıİçÇşŞğĞÜüÖö ]+$/,  {
-   message: "Name filed only contains alphanumeric characters"
+    message: "Your name can only contain alphabetic characters"
   }).required(),
   email: yup.string().email().required(),
   password: yup.string().required(),
