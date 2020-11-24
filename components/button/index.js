@@ -12,7 +12,7 @@ export function DownloadButton({
   return (
     <button
       type="button"
-      className={cn(styles.downloadButton, className, { disable })}
+      className={cn(styles.button,styles.downloadButton, className, { disable })}
       {...props}
     >
       {children}
@@ -22,7 +22,7 @@ export function DownloadButton({
 
 function Button({ children, className, ...props }) {
   return (
-    <button type="button" className={cn(styles.normal, className)} {...props}>
+    <button type="button" className={cn(styles.button, styles.normal, className)} {...props}>
       {children}
     </button>
   )
