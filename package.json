@@ -10,6 +10,7 @@
     "start": "next start",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -o public/ui",
+    "export": "next export",
     "icon": "svgr icons -d components/icons --icon"
   },
   "dependencies": {
