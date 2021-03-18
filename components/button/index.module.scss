@@ -9,19 +9,21 @@
   border: 1px solid;
   background: transparent;
   color: var(--c-text);
+  outline: none;
 }
 
 .normal {
-  @extend .button;
   background: var(--c-primary);
   border: none;
   padding-top: 15px;
   padding-bottom: 15px;
+  &:hover{
+    background: var(--c-primary-dark);
+  }
 
 }
 
 .downloadButton {
-  @extend .button;
   border: 1px solid var(--c-primary);
   background: transparent;
   font-size: var(--f-base);
