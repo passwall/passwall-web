@@ -30,6 +30,14 @@ export const PAGES = {
 
 export const DOWLOAD_LINKS = [
   {
+    name: 'Chrome',
+    link:'https://chrome.google.com/webstore/detail/passwall-free-password-ma/blaiihhmnjllkfnkmkidahhegbmlghmo'
+  },
+  {
+    name: 'Firefox',
+    link:'https://addons.mozilla.org/en-US/firefox/addon/passwall-free-password-manager/'
+  },
+  {
     name: 'MacOS',
     link:'https://passwall-downloads.s3.eu-central-1.amazonaws.com/PassWall-MacOS-1.0.1.dmg'
   },
