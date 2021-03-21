@@ -18,7 +18,7 @@ function ThankYouPage() {
   return (
     <Layout>
       <Head>
-        <title>Passwall Web</title>
+        <title>Passwall</title>
       </Head>
       <Layout className="contentBody">
         <LeftSide />
@@ -32,7 +32,7 @@ function ThankYouPage() {
                 Welcome aboard!
               </Text>
               <Text tag="p" theme="medium">
-                We’ve e-mailed details and your master password, keep it a
+                We’ve e-mailed details. Keep  your master password
                 secret!
               </Text>
               <Text tag="p" theme="regular" className="platforms">

@@ -41,9 +41,12 @@ export const FORM_TYPES = {
 }
 
 const schema = yup.object().shape({
-  name: yup.string().matches(/^.[a-zA-ZıİçÇşŞğĞÜüÖö ]+$/,  {
-    message: "Your name can only contain alphabetic characters"
-  }).required(),
+  name: yup
+    .string()
+    .matches(/^.[a-zA-ZıİçÇşŞğĞÜüÖö ]+$/, {
+      message: 'Your name can only contain alphabetic characters'
+    })
+    .required(),
   email: yup.string().email().required(),
   password: yup.string().required(),
   passwordConfirm: yup
@@ -156,7 +159,7 @@ export default function Form({ formType = FORM_TYPES.FREE }) {
         onSubmit={handleSubmit(onSubmit)}
         method="POST"
       >
-        <Icons.ArrowLeft onClick={() => router.back()} />
+        <Icons.ArrowLeft onClick={() => router.push('/')} />
         <Text tag="h3" theme="heromd" fancy={formType === FORM_TYPES.PRO}>
           {formType === FORM_TYPES.PRO
             ? 'Create a PRO account'
@@ -196,7 +199,7 @@ export default function Form({ formType = FORM_TYPES.FREE }) {
           ref={captchaRef}
           sitekey="6LcbOP0UAAAAAK1Zc6jNtrIF34pMBNPGaDaz3VpY"
           size="invisible"
-        />        
+        />
 
         <Button type="submit" value="Submit">
           <Text tag="p" theme="regular" className={styles.btn}>

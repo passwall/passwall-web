@@ -1,0 +1,78 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: flex-start;
+  align-items: center;
+
+  @media (--d) {
+    justify-content: center;
+    height: 100vh;
+  }
+}
+
+.subText {
+  opacity: 0.7;
+  margin-top: 10px;
+}
+
+.dowloadSection {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+
+  button {
+    margin-right: 15px;
+    margin-left: 15px;
+    & + button {
+      margin-top: 10px;
+      
+      @media (--d) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  @media (--d) {
+    flex-direction: row;
+  }
+}
+
+.key {
+  position: absolute;
+  top: 290px;
+  right: 280px;
+  display: none;
+
+  @media (--d) {
+    display: flex;
+  }
+}
+
+.creditCard {
+  position: absolute;
+  top: 390px;
+  left: 260px;
+  display: none;
+  transform: rotate(15deg);
+
+  @media (--d) {
+    display: flex;
+  }
+}
+
+.lock {
+  position: absolute;
+  top: 145px;
+  left: 365px;
+  transform: rotate(15deg);
+  display: none;
+
+  @media (--d) {
+    display: flex;
+  }
+}

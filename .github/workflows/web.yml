@@ -23,5 +23,6 @@ jobs:
           cd /opt/passwall-web
           git pull
           /usr/bin/yarn install
-          cp /opt/.env.local /opt/passwall-web/
-          /usr/bin/yarn run next build && /usr/bin/yarn run next export
+          /usr/bin/yarn build
+          pm2 stop next
+          pm2 start npm --name "next" -- start

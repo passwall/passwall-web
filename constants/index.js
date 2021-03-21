@@ -30,6 +30,14 @@ export const PAGES = {
 
 export const DOWLOAD_LINKS = [
   {
+    name: 'Chrome',
+    link:'https://chrome.google.com/webstore/detail/passwall-free-password-ma/blaiihhmnjllkfnkmkidahhegbmlghmo'
+  },
+  {
+    name: 'Firefox',
+    link:'https://addons.mozilla.org/en-US/firefox/addon/passwall-free-password-manager/'
+  },
+  {
     name: 'MacOS',
     link:'https://passwall-downloads.s3.eu-central-1.amazonaws.com/PassWall-MacOS-1.0.1.dmg'
   },
@@ -45,11 +53,11 @@ export const DOWLOAD_LINKS = [
 
 export const COMING_SOON = [
   {
-    name: 'Chrome',
+    name: 'IOS',
     link: '#'
   },
   {
-    name: 'IOS',
+    name: 'Android',
     link: '#'
   },
   {
@@ -60,7 +68,7 @@ export const COMING_SOON = [
 
 export const FREE_TIER = [
   {
-    name: 'Logins',
+    name: 'Up to 250 Logins',
     icon: Icons.Users
   },
   {
@@ -75,23 +83,23 @@ export const FREE_TIER = [
 
 export const PAID_TIER = [
   {
+    name: '14 days free trial',
+    icon: Icons.BadgeCheck
+  },
+  {
     name: 'Everything in free',
     icon: Icons.BadgeCheck
   },
   {
-    name: 'Bank Accounts',
+    name: 'Unlimited Logins',
     icon: Icons.BadgeCheck
   },
   {
-    name: 'Emails',
-    icon: Icons.AtSymbol
+    name: 'Emails, Notes, Servers',
+    icon: Icons.Mail
   },
   {
-    name: 'Private Notes',
-    icon: Icons.ClipboardList
-  },
-  {
-    name: 'Servers',
-    icon: Icons.Terminal
+    name: 'Credit Cards, Bank Accounts',
+    icon: Icons.CreditCard
   }
 ]
