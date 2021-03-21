@@ -5,12 +5,10 @@ import StoreContext from '../store'
 import Layout from '../components/layout'
 import LeftSide from '../components/leftside'
 import RightSide from '../components/rightside'
-import Form, { FORM_TYPES } from '../components/form'
+import UpgradeForm from '../components/upgrade'
 import BottomBar from '../components/bottombar'
-import Text from '../components/text'
-import Card, { FreeCard, PaidCard } from '../components/card'
 
-function ProPage() {
+function UpgradePage() {
   const store = useContext(StoreContext)
 
   return (
@@ -22,7 +20,7 @@ function ProPage() {
         <LeftSide />
         <RightSide>
           <div className="container">
-            <Form formType={FORM_TYPES.PRO} />
+            <UpgradeForm />
           </div>
           <BottomBar />
         </RightSide>
@@ -31,4 +29,4 @@ function ProPage() {
   )
 }
 
-export default ProPage
+export default UpgradePage
