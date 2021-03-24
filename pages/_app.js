@@ -1,7 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 import SiteConfig from '../site.config'
-import { StoreProvider } from '../store'
+import { AppWrapper } from '../store/form-type'
 import { MobileNav } from '../components/nav'
 
 import 'react-toastify/dist/ReactToastify.min.css'
@@ -37,10 +37,12 @@ export default function MyApp({ Component, pageProps }) {
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
       </Head>
-      <StoreProvider>
+      <AppWrapper>
+      
         <MobileNav />
         <Component {...pageProps} />
-      </StoreProvider>
+      
+      </AppWrapper>
     </>
   )
 }
