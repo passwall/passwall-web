@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useContext,  useRef } from 'react'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -7,10 +7,12 @@ import * as yup from 'yup'
 import cn from 'classnames'
 import styles from './index.module.scss'
 import * as Icons from 'heroicons-react'
+import { FORM_TYPES } from '../step-one'
 
 import Text from '../text'
 import Button from '../button'
 import Api from '../../api'
+import AppContext from '../../store/form-type'
 
 function ErrorMsg({ messages = [] }) {
   return (
@@ -31,11 +33,6 @@ function ErrorMsg({ messages = [] }) {
       )}
     </div>
   )
-}
-
-export const FORM_TYPES = {
-  FREE: 'pro',
-  PRO: 'free'
 }
 
 const schema = yup.object().shape({
@@ -84,7 +81,9 @@ export default function Form() {
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema)
   })
-  let formType = localStorage.getItem("formType")
+  
+  const store = useContext(AppContext);
+  let formType = store.formTypem
   
   const verifyCodeAPI = ({ code, email }) => {
     return Api.get(`/auth/verify/`+code+`?email=`+email)
@@ -120,7 +119,7 @@ export default function Form() {
       >
         <Icons.ArrowLeft onClick={() => router.push('/'+formType)} />
         <Text tag="h3" theme="heromd" fancy={formType === FORM_TYPES.PRO}>
-          {'Enter your code'}
+          Enter your code
         </Text>
         <TextInput
           label="Please enter the verification code at your e-mail inbox."

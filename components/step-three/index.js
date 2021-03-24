@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useContext, useRef } from 'react'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -7,11 +7,13 @@ import * as yup from 'yup'
 import cn from 'classnames'
 import styles from './index.module.scss'
 import * as Icons from 'heroicons-react'
+import { FORM_TYPES } from '../step-one'
 
 import Text from '../text'
 import Button from '../button'
 import Api from '../../api'
 import CryptoJS from 'crypto-js'
+import AppContext from '../../store/form-type'
 
 function ErrorMsg({ messages = [] }) {
   return (
@@ -32,11 +34,6 @@ function ErrorMsg({ messages = [] }) {
       )}
     </div>
   )
-}
-
-export const FORM_TYPES = {
-  FREE: 'pro',
-  PRO: 'free'
 }
 
 const schema = yup.object().shape({
@@ -85,9 +82,8 @@ export default function Form() {
     resolver: yupResolver(schema)
   })
 
-  let formType = localStorage.getItem("formType")
-
-  const captchaRef = useRef(null)
+  const store = useContext(AppContext);
+  let formType = store.formTypem
 
   React.useEffect(() => {
     Paddle.Setup({ vendor: 121559 })
@@ -154,10 +150,13 @@ export default function Form() {
       >
         <Icons.ArrowLeft onClick={() => router.push('/step-two')} />
         <Text tag="h3" theme="heromd" fancy={formType === FORM_TYPES.PRO}>
-          {formType === FORM_TYPES.PRO
-            ? 'Create a PRO account'
-            : 'Create a free account'}
+          {'Set master password'}
         </Text>
+        <Text tag="p" theme="medium">
+          You can't change your master password later and we do not store your master password anywhere. 
+          Please keep it secret and do not forget.
+        </Text>
+        <br></br>
         <TextInput
           label="Master Password"
           name="password"
@@ -174,7 +173,7 @@ export default function Form() {
         />
         <Button type="submit" value="Submit">
           <Text tag="p" theme="regular" className={styles.btn}>
-            {formType === "PRO"
+            {formType === FORM_TYPES.PRO
               ? 'Continue to Payment'
               : 'Create My Account'}
           </Text>

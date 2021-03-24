@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useContext, useState, useRef } from 'react'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -11,6 +11,7 @@ import * as Icons from 'heroicons-react'
 import Text from '../text'
 import Button from '../button'
 import Api from '../../api'
+import AppContext from '../../store/form-type'
 
 function ErrorMsg({ messages = [] }) {
   return (
@@ -86,7 +87,8 @@ export default function Form({ formType = FORM_TYPES.FREE }) {
     resolver: yupResolver(schema)
   })  
 
-  localStorage.setItem("formType", formType)
+  const store = useContext(AppContext);
+  store.changeFormType(formType)
   
   const createCodeAPI = ({ name, email }) => {
     return Api.post(`/auth/code`, {
@@ -107,6 +109,7 @@ export default function Form({ formType = FORM_TYPES.FREE }) {
   }
 
   const onSubmit = async ({ name, email }) => {
+    console.log(formType)
     localStorage.setItem("name", name)
     localStorage.setItem("email", email)
     createCodeAPI({ name, email })
@@ -128,7 +131,7 @@ export default function Form({ formType = FORM_TYPES.FREE }) {
         <Text tag="h3" theme="heromd" fancy={formType === FORM_TYPES.PRO}>
           {formType === FORM_TYPES.PRO
             ? 'Create a PRO account'
-            : 'Create a free account'}
+            : 'Create a FREE account'}
         </Text>
         <TextInput
           label="Full Name"
