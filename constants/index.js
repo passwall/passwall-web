@@ -39,15 +39,15 @@ export const DOWLOAD_LINKS = [
   },
   {
     name: 'MacOS',
-    link:'https://passwall-downloads.s3.eu-central-1.amazonaws.com/1.0.2/Passwall-MacOS-1.0.2.dmg'
+    link:'https://passwall-downloads.s3.eu-central-1.amazonaws.com/1.0.3/PassWall-MacOS-1.0.3-amd64.dmg'
   },
   {
     name: 'Windows',
-    link: 'https://passwall-downloads.s3.eu-central-1.amazonaws.com/1.0.2/Passwall-Windows-1.0.2.exe'
+    link: 'https://passwall-downloads.s3.eu-central-1.amazonaws.com/1.0.3/Passwall-Windows-1.0.3.x64.exe'
   },
   {
     name: 'Linux',
-    link: 'https://passwall-downloads.s3.eu-central-1.amazonaws.com/1.0.2/Passwall-Linux-1.0.2-amd64.deb'
+    link: 'https://passwall-downloads.s3.eu-central-1.amazonaws.com/1.0.3/PassWall-Linux-1.0.3-amd64.deb'
   }
 ]
 
