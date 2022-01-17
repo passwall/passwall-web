@@ -50,7 +50,7 @@ export function PaidCard() {
             PRO
           </Text>
           <Text>
-            <span>$2</span>/month
+            <span style={{fontSize:26}}>$24</span>/year
           </Text>
         </div>
         <ul className={cn(styles.cardBody)}>

@@ -96,7 +96,7 @@ export default function Form() {
   }) => {
     const Paddle = window.Paddle
     Paddle.Checkout.open({
-      product: 630862,
+      product: 751714,
       email,
       successCallback,
       closeCallback
