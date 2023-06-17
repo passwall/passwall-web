@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef } from 'react'
+import React, { useState, useContext, useRef } from 'react'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -11,7 +11,6 @@ import * as Icons from 'heroicons-react'
 import Text from '../text'
 import Button from '../button'
 import Api from '../../api'
-import AppContext from '../../store/form-type'
 
 function ErrorMsg({ messages = [] }) {
   return (
@@ -34,18 +33,7 @@ function ErrorMsg({ messages = [] }) {
   )
 }
 
-export const FORM_TYPES = {
-  FREE: 'free',
-  PRO: 'pro'
-}
-
 const schema = yup.object().shape({
-  name: yup
-    .string()
-    .matches(/^.[a-zA-ZıİçÇşŞğĞÜüÖö ]+$/, {
-      message: 'Your name can only contain alphabetic characters'
-    })
-    .required(),
   email: yup.string().email().required()
 })
 
@@ -80,20 +68,18 @@ export function TextInput({
   )
 }
 
-export default function Form({ formType = FORM_TYPES.FREE }) {
+export default function Form() {
   const router = useRouter()
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema)
   })
 
-  const store = useContext(AppContext);
-  store.changeFormType(formType)
+  React.useEffect(() => {
+    // Paddle.Setup({ vendor: 121559 })
+  }, [])
 
-  const createCodeAPI = ({ name, email }) => {
-    return Api.post(`/auth/code`, {
-      name,
-      email
-    })
+  const registerAPI = ({ email }) => {
+    return Api.delete(`/auth/recover-delete/` + email)
       .then((data) => Promise.resolve(data))
       .catch((err) => {
         if (err.response.status === 400) {
@@ -107,13 +93,9 @@ export default function Form({ formType = FORM_TYPES.FREE }) {
       })
   }
 
-  const onSubmit = async ({ name, email }) => {
-    localStorage.setItem("name", name)
-    localStorage.setItem("email", email)
-    createCodeAPI({ name, email })
-      .then(() => {
-        router.push('/step-two')
-      })
+  const onSubmit = async ({ email }) => {
+    registerAPI({ email })
+      .then(() => { router.push('/deleted') })
       .catch((err) => console.error(err))
   }
 
@@ -125,19 +107,14 @@ export default function Form({ formType = FORM_TYPES.FREE }) {
         onSubmit={handleSubmit(onSubmit)}
         method="POST"
       >
-        <Icons.ArrowLeft onClick={() => router.push('/')} />
-        <Text tag="h3" theme="heromd" fancy={formType === FORM_TYPES.PRO}>
-          {formType === FORM_TYPES.PRO
-            ? 'Create account'
-            : 'Create a FREE account'}
+        <Icons.ArrowLeft onClick={() => router.push('/recover-delete-code')} />
+        <Text tag="h3" theme="heromd" fancy={false}>
+          {'Confirm Account Deletion'}
         </Text>
-        <TextInput
-          label="Full Name"
-          name="name"
-          placeholder="John Doe"
-          register={register()}
-          errors={errors.name}
-        />
+        <Text tag="p" theme="medium">
+          Deleting your PassWall account cannot be recovered. Confirm by typing your email address again to delete your account.
+        </Text>
+        <br></br>
         <TextInput
           label="E-Mail"
           name="email"
@@ -148,7 +125,7 @@ export default function Form({ formType = FORM_TYPES.FREE }) {
         />
         <Button type="submit" value="Submit">
           <Text tag="p" theme="regular" className={styles.btn}>
-            {'Continue to Verify Email'}
+            {'Delete My PassWall Account'}
           </Text>
         </Button>
       </form>

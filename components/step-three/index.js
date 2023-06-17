@@ -64,7 +64,6 @@ export function TextInput({
         placeholder={placeholder}
         ref={register}
         className={cn({ error: errors })}
-        type={type}
         {...props}
       />
       {errors && (
@@ -86,22 +85,7 @@ export default function Form() {
   let formType = store.formTypem
 
   React.useEffect(() => {
-    Paddle.Setup({ vendor: 121559 })
   }, [])
-
-  const paid = ({
-    email,
-    successCallback = () => {},
-    closeCallback = () => {}
-  }) => {
-    const Paddle = window.Paddle
-    Paddle.Checkout.open({
-      product: 751714,
-      email,
-      successCallback,
-      closeCallback
-    })
-  }
 
   const registerAPI = ({ name, email, password }) => {
     return Api.post(`/auth/signup`, {
@@ -126,17 +110,7 @@ export default function Form() {
     let name = localStorage.getItem("name")
     let email = localStorage.getItem("email")
     registerAPI({ name, email, password })
-      .then(() => {
-        if (formType === FORM_TYPES.PRO) {
-          return paid({
-            email,
-            successCallback: () => router.push('/thankyou'),
-            closeCallback: (reason) => console.warn(reason)
-          })
-        } else {
-          router.push('/thankyou')
-        }
-      })
+      .then(() => { router.push('/thankyou') })
       .catch((err) => console.error(err))
   }
 
@@ -153,7 +127,7 @@ export default function Form() {
           {'Set master password'}
         </Text>
         <Text tag="p" theme="medium">
-          You can't change your master password later and we do not store your master password anywhere. 
+          You can't change your master password later and we do not store your master password anywhere.
           Please keep it secret and do not forget.
         </Text>
         <br></br>
@@ -173,9 +147,7 @@ export default function Form() {
         />
         <Button type="submit" value="Submit">
           <Text tag="p" theme="regular" className={styles.btn}>
-            {formType === FORM_TYPES.PRO
-              ? 'Continue to Payment'
-              : 'Create My Account'}
+            {'Create My Account'}
           </Text>
         </Button>
       </form>

@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef } from 'react'
+import React, { useState, useContext, useRef } from 'react'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -11,7 +11,6 @@ import * as Icons from 'heroicons-react'
 import Text from '../text'
 import Button from '../button'
 import Api from '../../api'
-import AppContext from '../../store/form-type'
 
 function ErrorMsg({ messages = [] }) {
   return (
@@ -34,19 +33,13 @@ function ErrorMsg({ messages = [] }) {
   )
 }
 
-export const FORM_TYPES = {
-  FREE: 'free',
-  PRO: 'pro'
-}
-
 const schema = yup.object().shape({
-  name: yup
+  code: yup
     .string()
-    .matches(/^.[a-zA-ZıİçÇşŞğĞÜüÖö ]+$/, {
-      message: 'Your name can only contain alphabetic characters'
+    .matches(/^\d+$/, {
+      message: 'Code can only contain numbers'
     })
-    .required(),
-  email: yup.string().email().required()
+    .required()
 })
 
 export function TextInput({
@@ -80,20 +73,14 @@ export function TextInput({
   )
 }
 
-export default function Form({ formType = FORM_TYPES.FREE }) {
+export default function Form() {
   const router = useRouter()
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema)
   })
 
-  const store = useContext(AppContext);
-  store.changeFormType(formType)
-
-  const createCodeAPI = ({ name, email }) => {
-    return Api.post(`/auth/code`, {
-      name,
-      email
-    })
+  const verifyCodeAPI = ({ code, email }) => {
+    return Api.get(`/auth/verify/` + code + `?email=` + email)
       .then((data) => Promise.resolve(data))
       .catch((err) => {
         if (err.response.status === 400) {
@@ -107,12 +94,11 @@ export default function Form({ formType = FORM_TYPES.FREE }) {
       })
   }
 
-  const onSubmit = async ({ name, email }) => {
-    localStorage.setItem("name", name)
-    localStorage.setItem("email", email)
-    createCodeAPI({ name, email })
+  const onSubmit = async ({ code }) => {
+    let email = localStorage.getItem("email")
+    verifyCodeAPI({ code, email })
       .then(() => {
-        router.push('/step-two')
+        router.push('/recover-delete-confirm')
       })
       .catch((err) => console.error(err))
   }
@@ -125,30 +111,20 @@ export default function Form({ formType = FORM_TYPES.FREE }) {
         onSubmit={handleSubmit(onSubmit)}
         method="POST"
       >
-        <Icons.ArrowLeft onClick={() => router.push('/')} />
-        <Text tag="h3" theme="heromd" fancy={formType === FORM_TYPES.PRO}>
-          {formType === FORM_TYPES.PRO
-            ? 'Create account'
-            : 'Create a FREE account'}
+        <Icons.ArrowLeft onClick={() => router.push('/recover-delete')} />
+        <Text tag="h3" theme="heromd" fancy={false}>
+          Enter your code
         </Text>
         <TextInput
-          label="Full Name"
-          name="name"
-          placeholder="John Doe"
+          label="Please enter the verification code at your e-mail inbox."
+          name="code"
+          placeholder="123456"
           register={register()}
-          errors={errors.name}
-        />
-        <TextInput
-          label="E-Mail"
-          name="email"
-          placeholder="hello@passwall.io"
-          type="email"
-          register={register()}
-          errors={errors.email}
+          errors={errors.code}
         />
         <Button type="submit" value="Submit">
           <Text tag="p" theme="regular" className={styles.btn}>
-            {'Continue to Verify Email'}
+            {'Continue to Recover Delete Final Step'}
           </Text>
         </Button>
       </form>

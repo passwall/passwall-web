@@ -21,9 +21,6 @@ function HomePage() {
               Start Keeping <br /> Your Passwords Safe
             </Text>
             <div className="cards">
-              <Card>
-                <FreeCard />
-              </Card>
               <Card border="fancy">
                 <PaidCard />
               </Card>
