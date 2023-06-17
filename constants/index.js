@@ -27,7 +27,7 @@ export const PAGES = {
     external: true
   },
   Recover: {
-    path: 'http://passwall.io/recover-delete',
+    path: 'https://signup.passwall.io/recover-delete',
     name: 'Recover Delete',
     external: true
   }
