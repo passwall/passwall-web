@@ -1,4 +1,4 @@
-import React, { useState, useContext,  useRef } from 'react'
+import React, { useState, useContext, useRef } from 'react'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -64,7 +64,6 @@ export function TextInput({
         placeholder={placeholder}
         ref={register}
         className={cn({ error: errors })}
-        type={type}
         {...props}
       />
       {errors && (
@@ -81,12 +80,12 @@ export default function Form() {
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema)
   })
-  
+
   const store = useContext(AppContext);
   let formType = store.formTypem
-  
+
   const verifyCodeAPI = ({ code, email }) => {
-    return Api.get(`/auth/verify/`+code+`?email=`+email)
+    return Api.get(`/auth/verify/` + code + `?email=` + email)
       .then((data) => Promise.resolve(data))
       .catch((err) => {
         if (err.response.status === 400) {
@@ -117,7 +116,7 @@ export default function Form() {
         onSubmit={handleSubmit(onSubmit)}
         method="POST"
       >
-        <Icons.ArrowLeft onClick={() => router.push('/'+formType)} />
+        <Icons.ArrowLeft onClick={() => router.push('/' + formType)} />
         <Text tag="h3" theme="heromd" fancy={formType === FORM_TYPES.PRO}>
           Enter your code
         </Text>

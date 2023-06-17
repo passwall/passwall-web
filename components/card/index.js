@@ -47,10 +47,7 @@ export function PaidCard() {
       <div>
         <div className={cn(styles.cardHeader, 'pro')}>
           <Text tag="h2" theme="heromd" fancy>
-            PRO
-          </Text>
-          <Text>
-            <span style={{fontSize:26}}>$24</span>/year
+            SIGN UP
           </Text>
         </div>
         <ul className={cn(styles.cardBody)}>
@@ -70,7 +67,7 @@ export function PaidCard() {
       <Wlink className={styles.link} href="/pro" external={false}>
         <Button className={styles.cardBtn}>
           <Text tag="p" theme="medium">
-            SIGN UP
+            START
           </Text>
         </Button>
       </Wlink>

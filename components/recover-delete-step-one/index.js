@@ -11,7 +11,6 @@ import * as Icons from 'heroicons-react'
 import Text from '../text'
 import Button from '../button'
 import Api from '../../api'
-import AppContext from '../../store/form-type'
 
 function ErrorMsg({ messages = [] }) {
   return (
@@ -34,18 +33,7 @@ function ErrorMsg({ messages = [] }) {
   )
 }
 
-export const FORM_TYPES = {
-  FREE: 'free',
-  PRO: 'pro'
-}
-
 const schema = yup.object().shape({
-  name: yup
-    .string()
-    .matches(/^.[a-zA-ZıİçÇşŞğĞÜüÖö ]+$/, {
-      message: 'Your name can only contain alphabetic characters'
-    })
-    .required(),
   email: yup.string().email().required()
 })
 
@@ -80,20 +68,14 @@ export function TextInput({
   )
 }
 
-export default function Form({ formType = FORM_TYPES.FREE }) {
+export default function Form() {
   const router = useRouter()
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema)
   })
 
-  const store = useContext(AppContext);
-  store.changeFormType(formType)
-
-  const createCodeAPI = ({ name, email }) => {
-    return Api.post(`/auth/code`, {
-      name,
-      email
-    })
+  const createCodeAPI = ({ email }) => {
+    return Api.post(`/auth/delete-code`, { email })
       .then((data) => Promise.resolve(data))
       .catch((err) => {
         if (err.response.status === 400) {
@@ -107,12 +89,11 @@ export default function Form({ formType = FORM_TYPES.FREE }) {
       })
   }
 
-  const onSubmit = async ({ name, email }) => {
-    localStorage.setItem("name", name)
+  const onSubmit = async ({ email }) => {
     localStorage.setItem("email", email)
-    createCodeAPI({ name, email })
+    createCodeAPI({ email })
       .then(() => {
-        router.push('/step-two')
+        router.push('/recover-delete-code')
       })
       .catch((err) => console.error(err))
   }
@@ -126,18 +107,9 @@ export default function Form({ formType = FORM_TYPES.FREE }) {
         method="POST"
       >
         <Icons.ArrowLeft onClick={() => router.push('/')} />
-        <Text tag="h3" theme="heromd" fancy={formType === FORM_TYPES.PRO}>
-          {formType === FORM_TYPES.PRO
-            ? 'Create account'
-            : 'Create a FREE account'}
+        <Text tag="h3" theme="heromd" fancy={false}>
+          {'Delete PassWall account'}
         </Text>
-        <TextInput
-          label="Full Name"
-          name="name"
-          placeholder="John Doe"
-          register={register()}
-          errors={errors.name}
-        />
         <TextInput
           label="E-Mail"
           name="email"
@@ -148,7 +120,7 @@ export default function Form({ formType = FORM_TYPES.FREE }) {
         />
         <Button type="submit" value="Submit">
           <Text tag="p" theme="regular" className={styles.btn}>
-            {'Continue to Verify Email'}
+            {'Continue to Delete Account'}
           </Text>
         </Button>
       </form>

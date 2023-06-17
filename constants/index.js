@@ -25,21 +25,26 @@ export const PAGES = {
     path: 'https://twitter.com/pass_wall',
     name: 'Twitter',
     external: true
+  },
+  Recover: {
+    path: 'http://passwall.io/recover-delete',
+    name: 'Recover Delete',
+    external: true
   }
 }
 
 export const DOWLOAD_LINKS = [
   {
     name: 'Chrome',
-    link:'https://chrome.google.com/webstore/detail/passwall-free-password-ma/blaiihhmnjllkfnkmkidahhegbmlghmo'
+    link: 'https://chrome.google.com/webstore/detail/passwall-free-password-ma/blaiihhmnjllkfnkmkidahhegbmlghmo'
   },
   {
     name: 'Firefox',
-    link:'https://addons.mozilla.org/en-US/firefox/addon/passwall-free-password-manager/'
+    link: 'https://addons.mozilla.org/en-US/firefox/addon/passwall-free-password-manager/'
   },
   {
     name: 'Desktop',
-    link:'https://github.com/passwall/passwall-desktop/releases/latest'
+    link: 'https://github.com/passwall/passwall-desktop/releases/latest'
   }
 ]
 
@@ -75,16 +80,12 @@ export const FREE_TIER = [
 
 export const PAID_TIER = [
   {
-    name: '14 days free trial',
-    icon: Icons.BadgeCheck
-  },
-  {
-    name: 'Everything in free',
+    name: '7 days free trial',
     icon: Icons.BadgeCheck
   },
   {
     name: 'Unlimited Logins',
-    icon: Icons.BadgeCheck
+    icon: Icons.Key
   },
   {
     name: 'Emails, Notes, Servers',
@@ -93,5 +94,10 @@ export const PAID_TIER = [
   {
     name: 'Credit Cards, Bank Accounts',
     icon: Icons.CreditCard
-  }
+  },
+  {
+    name: 'Multi Platform: iOS, Android, Chrome',
+    icon: Icons.CloudDownload
+  },
+
 ]
