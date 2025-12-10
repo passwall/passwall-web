@@ -26,6 +26,11 @@ export const PAGES = {
     name: 'Twitter',
     external: true
   },
+  Privacy: {
+    path: '/privacy',
+    name: 'Privacy Policy',
+    external: false
+  },
   Recover: {
     path: 'https://signup.passwall.io/recover-delete',
     name: 'Recover Delete',

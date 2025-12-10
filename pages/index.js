@@ -1,11 +1,13 @@
 import React, { useContext } from 'react'
 import Head from 'next/head'
+import Link from 'next/link'
 
 import Layout from '../components/layout'
 import LeftSide from '../components/leftside'
 import RightSide from '../components/rightside'
 import Text from '../components/text'
 import Card, { FreeCard, PaidCard } from '../components/card'
+import Footer from '../components/footer'
 
 function HomePage() {
   return (
@@ -25,7 +27,17 @@ function HomePage() {
                 <PaidCard />
               </Card>
             </div>
+            <div className="privacy-link-section">
+              <Text tag="p" theme="small">
+                By signing up, you agree to our{' '}
+                <Link href="/privacy">
+                  <a className="privacy-link">Privacy Policy</a>
+                </Link>
+                {' '}and understand how we protect your data with zero-knowledge encryption.
+              </Text>
+            </div>
           </div>
+          <Footer />
         </RightSide>
       </Layout>
     </Layout>

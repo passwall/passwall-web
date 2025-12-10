@@ -82,7 +82,7 @@ export default function Form() {
   })
 
   const store = useContext(AppContext);
-  let formType = store.formTypem
+  let formType = store.formType
 
   const verifyCodeAPI = ({ code, email }) => {
     return Api.get(`/auth/verify/` + code + `?email=` + email)

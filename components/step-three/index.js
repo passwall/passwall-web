@@ -58,7 +58,7 @@ export function TextInput({
     <div className={cn(styles.input, className)}>
       <label htmlFor={name}>{label}</label>
       <input
-        type="text"
+        type={type}
         name={name}
         id={name}
         placeholder={placeholder}
@@ -82,7 +82,7 @@ export default function Form() {
   })
 
   const store = useContext(AppContext);
-  let formType = store.formTypem
+  let formType = store.formType
 
   React.useEffect(() => {
   }, [])
