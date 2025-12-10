@@ -24,9 +24,17 @@ echo "  App User: $APP_USER"
 echo "  Node Version: $NODE_VERSION"
 echo ""
 
+# Fix repository issues first
+echo -e "${GREEN}[0/8] Fixing repository issues...${NC}"
+sudo rm -f /etc/apt/sources.list.d/pgdg.list 2>/dev/null || true
+sudo rm -f /etc/apt/sources.list.d/postgresql.list 2>/dev/null || true
+
 # Update system packages
 echo -e "${GREEN}[1/8] Updating system packages...${NC}"
-sudo apt-get update
+sudo apt-get clean
+sudo apt-get update || {
+    echo -e "${YELLOW}Warning: apt update had some errors, but continuing...${NC}"
+}
 sudo apt-get upgrade -y
 
 # Install Node.js
