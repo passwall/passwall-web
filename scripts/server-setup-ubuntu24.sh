@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# Passwall Web Server Setup Script for Ubuntu 18.04
-# Uses Node.js 16 (compatible with Ubuntu 18.04)
+# Passwall Web Server Setup Script for Ubuntu 24.04
+# Uses Node.js 20 (latest LTS)
 
 set -e
 
-echo "🚀 Starting Passwall Web Server Setup (Ubuntu 18.04 compatible)..."
+echo "🚀 Starting Passwall Web Server Setup (Ubuntu 24.04)..."
 
 # Colors for output
 RED='\033[0;31m'
@@ -13,97 +13,96 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
-# Configuration - Use Node.js 16 for Ubuntu 18.04 compatibility
+# Configuration
 APP_DIR="${DEPLOY_PATH:-/var/www/passwall-web}"
 APP_USER="${APP_USER:-deploy}"
-NODE_VERSION="16"  # Compatible with Ubuntu 18.04
+NODE_VERSION="${NODE_VERSION:-20}"  # Use Node.js 20 for Ubuntu 24.04
 
 echo -e "${YELLOW}Configuration:${NC}"
+echo "  Ubuntu Version: 24.04"
 echo "  App Directory: $APP_DIR"
 echo "  App User: $APP_USER"
-echo "  Node Version: $NODE_VERSION (Ubuntu 18.04 compatible)"
-echo ""
-echo -e "${YELLOW}⚠️  Note: Using Node.js 16 due to Ubuntu 18.04 limitations${NC}"
-echo -e "${YELLOW}    Consider upgrading to Ubuntu 20.04 or 22.04 for Node.js 18+${NC}"
+echo "  Node Version: $NODE_VERSION"
 echo ""
 
 # Fix repository issues first
-echo -e "${GREEN}[0/9] Fixing repository issues...${NC}"
+echo -e "${GREEN}[1/10] Fixing repository issues...${NC}"
 sudo rm -f /etc/apt/sources.list.d/pgdg.list 2>/dev/null || true
 sudo rm -f /etc/apt/sources.list.d/postgresql.list 2>/dev/null || true
 
 # Update system packages
-echo -e "${GREEN}[1/9] Updating system packages...${NC}"
+echo -e "${GREEN}[2/10] Updating system packages...${NC}"
 sudo apt-get clean
-sudo apt-get update || {
-    echo -e "${YELLOW}Warning: apt update had some errors, but continuing...${NC}"
-}
+sudo apt-get update
 sudo apt-get upgrade -y
 
 # Install required dependencies
-echo -e "${GREEN}[2/9] Installing required dependencies...${NC}"
+echo -e "${GREEN}[3/10] Installing required dependencies...${NC}"
 sudo apt-get install -y curl wget git build-essential
 
+# Create application user FIRST (before anything else)
+echo -e "${GREEN}[4/10] Creating application user: $APP_USER${NC}"
+if ! id "$APP_USER" &>/dev/null; then
+    sudo useradd -m -s /bin/bash $APP_USER
+    echo -e "${GREEN}✓ User $APP_USER created${NC}"
+else
+    echo -e "${YELLOW}✓ User $APP_USER already exists${NC}"
+fi
+
 # Remove old Node.js and PM2 completely
-echo -e "${GREEN}[3/9] Removing old Node.js and PM2 versions...${NC}"
+echo -e "${GREEN}[5/10] Removing old Node.js and PM2 versions...${NC}"
 sudo npm uninstall -g pm2 2>/dev/null || true
 sudo rm -f /usr/local/bin/pm2 /usr/bin/pm2 2>/dev/null || true
 sudo rm -rf /usr/local/lib/node_modules/pm2 2>/dev/null || true
 sudo apt-get remove -y --purge nodejs npm 2>/dev/null || true
 sudo apt-get autoremove -y
-sudo rm -f /usr/bin/node /usr/bin/npm /usr/local/bin/node /usr/local/bin/npm 2>/dev/null || true
-sudo update-alternatives --remove-all node 2>/dev/null || true
-sudo update-alternatives --remove-all npm 2>/dev/null || true
 
-# Install Node.js 16 (compatible with Ubuntu 18.04)
-echo -e "${GREEN}[4/9] Installing Node.js ${NODE_VERSION}...${NC}"
+# Install Node.js 20
+echo -e "${GREEN}[6/10] Installing Node.js ${NODE_VERSION}...${NC}"
 curl -fsSL https://deb.nodesource.com/setup_${NODE_VERSION}.x | sudo -E bash -
 sudo apt-get install -y nodejs
 
 # Verify installations
-echo -e "${GREEN}[5/9] Verifying Node.js and npm installation...${NC}"
+echo -e "${GREEN}[7/10] Verifying Node.js and npm installation...${NC}"
 echo "Node.js version: $(node --version)"
 echo "npm version: $(npm --version)"
 echo "Node.js path: $(which node)"
 echo "npm path: $(which npm)"
 
-# Ensure we're using the correct version
-ACTUAL_NODE_VERSION=$(node --version | cut -d'v' -f2 | cut -d'.' -f1)
-if [ "$ACTUAL_NODE_VERSION" != "16" ]; then
-    echo -e "${RED}Error: Wrong Node.js version detected ($ACTUAL_NODE_VERSION)${NC}"
-    echo -e "${YELLOW}Please run the fix script:${NC}"
-    echo "curl -o- https://raw.githubusercontent.com/passwall/passwall-web/main/scripts/fix-node-version.sh | bash"
-    exit 1
-fi
-
 # Install PM2 globally
-echo -e "${GREEN}[6/9] Installing PM2 globally...${NC}"
+echo -e "${GREEN}[8/10] Installing PM2 globally...${NC}"
 sudo npm install -g pm2@latest
 
 # Verify PM2 installation
-pm2 --version
+echo "PM2 version: $(pm2 --version)"
 
-# Create application user if doesn't exist
-if ! id "$APP_USER" &>/dev/null; then
-    echo -e "${GREEN}Creating application user: $APP_USER${NC}"
-    sudo useradd -m -s /bin/bash $APP_USER
+# Setup PM2 startup script (as the deploy user)
+echo -e "${GREEN}[9/10] Setting up PM2 startup script for user $APP_USER...${NC}"
+sudo -u $APP_USER bash -c "pm2 startup systemd" || true
+# Note: The command above will output a command that needs to be run with sudo
+# We'll capture and execute it
+PM2_STARTUP_CMD=$(sudo -u $APP_USER bash -c "pm2 startup systemd -u $APP_USER --hp /home/$APP_USER" | grep "sudo env" || true)
+if [ ! -z "$PM2_STARTUP_CMD" ]; then
+    echo "Executing: $PM2_STARTUP_CMD"
+    eval $PM2_STARTUP_CMD
 fi
 
-# Setup PM2 startup script
-echo -e "${GREEN}[7/9] Setting up PM2 startup script...${NC}"
-sudo env PATH=$PATH:/usr/bin pm2 startup systemd -u $APP_USER --hp /home/$APP_USER || true
-
-# Create application directory
-echo -e "${GREEN}[8/9] Creating application directory...${NC}"
+# Create application directory with correct ownership
+echo -e "${GREEN}[10/10] Creating application directory...${NC}"
 sudo mkdir -p $APP_DIR
 sudo mkdir -p $APP_DIR/logs
+
+# NOW set ownership (user exists now)
+echo "Setting ownership to $APP_USER:$APP_USER"
 sudo chown -R $APP_USER:$APP_USER $APP_DIR
+echo -e "${GREEN}✓ Directory created and owned by $APP_USER${NC}"
 
 # Install Nginx (optional, for reverse proxy)
+echo ""
 read -p "Do you want to install Nginx as reverse proxy? (y/n) " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-    echo -e "${GREEN}[9/9] Installing and configuring Nginx...${NC}"
+    echo -e "${GREEN}Installing and configuring Nginx...${NC}"
     sudo apt-get install -y nginx
     
     # Ask for domain name
@@ -120,6 +119,7 @@ server {
     add_header X-Frame-Options "SAMEORIGIN" always;
     add_header X-Content-Type-Options "nosniff" always;
     add_header X-XSS-Protection "1; mode=block" always;
+    add_header Referrer-Policy "no-referrer-when-downgrade" always;
 
     # Logging
     access_log /var/log/nginx/passwall-web-access.log;
@@ -148,6 +148,13 @@ server {
         proxy_cache_valid 60m;
         add_header Cache-Control "public, max-age=3600, immutable";
     }
+
+    # Serve public files directly
+    location /images/ {
+        proxy_pass http://localhost:3000;
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+    }
 }
 EOF
     
@@ -162,11 +169,16 @@ EOF
     sudo systemctl enable nginx
     
     echo -e "${GREEN}✅ Nginx installed and configured!${NC}"
+    echo ""
+    echo -e "${YELLOW}To enable SSL with Let's Encrypt:${NC}"
+    echo "  sudo apt-get install certbot python3-certbot-nginx"
+    echo "  sudo certbot --nginx -d ${DOMAIN_NAME} -d www.${DOMAIN_NAME}"
 else
-    echo -e "${YELLOW}[9/9] Skipping Nginx installation${NC}"
+    echo -e "${YELLOW}Skipping Nginx installation${NC}"
 fi
 
 # Setup firewall
+echo ""
 echo -e "${GREEN}Configuring firewall (UFW)...${NC}"
 sudo apt-get install -y ufw
 sudo ufw --force reset
@@ -182,20 +194,19 @@ echo -e "${GREEN}═════════════════════
 echo -e "${GREEN}✅ Server setup completed successfully!${NC}"
 echo -e "${GREEN}════════════════════════════════════════════${NC}"
 echo ""
-echo -e "${YELLOW}⚠️  Important: You are using Node.js 16${NC}"
-echo -e "${YELLOW}    Node.js 18 requires Ubuntu 20.04+${NC}"
-echo -e "${YELLOW}    Consider upgrading your OS for better support${NC}"
-echo ""
 echo -e "${YELLOW}📋 Next steps:${NC}"
 echo ""
-echo "1. Generate SSH key for GitHub Actions:"
+echo "1. Switch to deploy user and setup SSH keys:"
+echo "   ${GREEN}sudo su - $APP_USER${NC}"
 echo "   ${GREEN}ssh-keygen -t rsa -b 4096 -C 'github-deploy' -f ~/.ssh/passwall_deploy${NC}"
 echo "   ${GREEN}cat ~/.ssh/passwall_deploy.pub >> ~/.ssh/authorized_keys${NC}"
+echo "   ${GREEN}chmod 700 ~/.ssh${NC}"
+echo "   ${GREEN}chmod 600 ~/.ssh/authorized_keys${NC}"
 echo ""
-echo "2. Copy private key for GitHub Secret:"
+echo "2. Display private key (copy this for GitHub Secret):"
 echo "   ${GREEN}cat ~/.ssh/passwall_deploy${NC}"
 echo ""
-echo "3. Configure GitHub Secrets:"
+echo "3. Configure GitHub Secrets in your repository:"
 echo "   SERVER_HOST = $(curl -s ifconfig.me 2>/dev/null || hostname -I | awk '{print $1}')"
 echo "   SERVER_USERNAME = $APP_USER"
 echo "   SSH_PRIVATE_KEY = (paste the private key from step 2)"
@@ -203,9 +214,9 @@ echo "   SERVER_PORT = 22"
 echo "   DEPLOY_PATH = $APP_DIR"
 echo "   APP_URL = http://$(curl -s ifconfig.me 2>/dev/null || hostname -I | awk '{print $1}')"
 echo ""
-echo "4. Update GitHub Actions workflow to use Node.js 16:"
-echo "   Edit .github/workflows/deploy.yml"
-echo "   Change 'node-version: 18' to 'node-version: 16'"
+echo "4. Update GitHub Actions workflow to use Node.js 20:"
+echo "   Edit .github/workflows/deploy.yml and test.yml"
+echo "   Change node-version to '20'"
 echo ""
 echo "5. Test deployment:"
 echo "   ${GREEN}git push origin main${NC}"
