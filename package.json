@@ -9,7 +9,14 @@
     "build": "yarn run build:next",
     "start": "next start",
     "export": "next export",
-    "icon": "svgr icons -d components/icons --icon"
+    "icon": "svgr icons -d components/icons --icon",
+    "pm2:start": "pm2 start ecosystem.config.js --env production",
+    "pm2:stop": "pm2 stop passwall-web",
+    "pm2:restart": "pm2 restart passwall-web",
+    "pm2:logs": "pm2 logs passwall-web",
+    "pm2:monit": "pm2 monit",
+    "deploy:setup": "pm2 deploy production setup",
+    "deploy": "pm2 deploy production"
   },
   "dependencies": {
     "@hookform/resolvers": "^1.0.0",

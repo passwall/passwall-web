@@ -1,0 +1,120 @@
+name: Build and Deploy to Server
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Build Next.js application
+        run: npm run build
+        env:
+          NODE_ENV: production
+
+      - name: Create deployment package
+        run: |
+          mkdir -p deploy
+          cp -r .next deploy/
+          cp -r public deploy/
+          cp -r styles deploy/
+          cp -r components deploy/
+          cp -r pages deploy/
+          cp -r constants deploy/
+          cp -r store deploy/
+          cp package.json deploy/
+          cp package-lock.json deploy/
+          cp next.config.js deploy/
+          cp postcss.config.js deploy/
+          cp site.config.js deploy/
+          cp api.js deploy/
+          cp ecosystem.config.js deploy/ 2>/dev/null || true
+          tar -czf deploy.tar.gz -C deploy .
+
+      - name: Deploy to Server via SSH
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SERVER_PORT || 22 }}
+          source: "deploy.tar.gz"
+          target: "/tmp/"
+
+      - name: Extract and restart application
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SERVER_PORT || 22 }}
+          script: |
+            # Set variables
+            APP_DIR="${{ secrets.DEPLOY_PATH || '/var/www/passwall-web' }}"
+            BACKUP_DIR="$APP_DIR-backup-$(date +%Y%m%d-%H%M%S)"
+            
+            # Create app directory if it doesn't exist
+            mkdir -p $APP_DIR
+            
+            # Backup current deployment
+            if [ -d "$APP_DIR/.next" ]; then
+              echo "Creating backup at $BACKUP_DIR"
+              cp -r $APP_DIR $BACKUP_DIR
+            fi
+            
+            # Extract new deployment
+            cd $APP_DIR
+            tar -xzf /tmp/deploy.tar.gz
+            rm /tmp/deploy.tar.gz
+            
+            # Install production dependencies (only if package.json changed)
+            npm ci --production --legacy-peer-deps
+            
+            # Restart application with PM2
+            if pm2 describe passwall-web > /dev/null 2>&1; then
+              echo "Restarting existing PM2 process"
+              pm2 restart passwall-web
+            else
+              echo "Starting new PM2 process"
+              pm2 start ecosystem.config.js --env production
+            fi
+            
+            # Save PM2 configuration
+            pm2 save
+            
+            # Remove old backups (keep last 5)
+            cd $(dirname $APP_DIR)
+            ls -t | grep "passwall-web-backup" | tail -n +6 | xargs -r rm -rf
+            
+            echo "Deployment completed successfully!"
+
+      - name: Health Check
+        run: |
+          sleep 10
+          curl -f ${{ secrets.APP_URL || 'https://passwall.io' }} || exit 1
+
+      - name: Notify on Success
+        if: success()
+        run: echo "✅ Deployment successful!"
+
+      - name: Notify on Failure
+        if: failure()
+        run: echo "❌ Deployment failed!"
+
