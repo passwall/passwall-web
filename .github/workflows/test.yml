@@ -21,7 +21,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: '16'  # Use 16 for Ubuntu 18.04 compatibility, change to 18 for Ubuntu 20.04+
           cache: 'npm'
 
       - name: Install dependencies
